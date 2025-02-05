@@ -34,3 +34,377 @@
 2025-02-04T16:20:46.239+05:30  INFO 61065 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-02-04T16:20:46.244+05:30  INFO 61065 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-02-04T16:20:46.255+05:30  INFO 61065 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T17:02:22.151+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 62030 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T17:02:22.153+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T17:02:22.191+05:30  INFO 62030 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T17:02:22.191+05:30  INFO 62030 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T17:02:22.725+05:30  INFO 62030 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T17:02:22.774+05:30  INFO 62030 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 10 JPA repository interfaces.
+2025-02-04T17:02:23.184+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T17:02:23.193+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T17:02:23.194+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T17:02:23.223+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T17:02:23.224+05:30  INFO 62030 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1031 ms
+2025-02-04T17:02:23.324+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T17:02:23.365+05:30  INFO 62030 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T17:02:23.387+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T17:02:23.581+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T17:02:23.601+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T17:02:31.656+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6182b303
+2025-02-04T17:02:31.661+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T17:02:32.406+05:30  INFO 62030 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.35
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T17:02:33.078+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T17:02:42.523+05:30  INFO 62030 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:02:43.106+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T17:02:43.128+05:30  INFO 62030 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T17:02:43.135+05:30  INFO 62030 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 21.403 seconds (process running for 22.032)
+2025-02-04T17:13:16.362+05:30  INFO 62030 --- [HomieFix] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T17:13:16.376+05:30  INFO 62030 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T17:13:16.382+05:30  INFO 62030 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:13:16.387+05:30  INFO 62030 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T17:13:16.397+05:30  INFO 62030 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T17:13:22.926+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 62199 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T17:13:22.928+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T17:13:22.989+05:30  INFO 62199 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T17:13:22.989+05:30  INFO 62199 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T17:13:23.494+05:30  INFO 62199 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T17:13:23.543+05:30  INFO 62199 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 10 JPA repository interfaces.
+2025-02-04T17:13:23.938+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T17:13:23.948+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T17:13:23.948+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T17:13:23.979+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T17:13:23.980+05:30  INFO 62199 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 989 ms
+2025-02-04T17:13:24.082+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T17:13:24.124+05:30  INFO 62199 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T17:13:24.147+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T17:13:24.328+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T17:13:24.346+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T17:13:33.185+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4bbe08a1
+2025-02-04T17:13:33.190+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T17:13:33.888+05:30  INFO 62199 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.35
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T17:13:34.545+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T17:13:43.568+05:30  INFO 62199 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:13:44.152+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T17:13:44.174+05:30  INFO 62199 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T17:13:44.181+05:30  INFO 62199 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 21.704 seconds (process running for 22.243)
+2025-02-04T17:15:06.910+05:30  INFO 62199 --- [HomieFix] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T17:15:06.920+05:30  INFO 62199 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T17:15:06.926+05:30  INFO 62199 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:15:06.930+05:30  INFO 62199 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T17:15:10.768+05:30  INFO 62199 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T17:15:17.589+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 62219 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T17:15:17.592+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T17:15:17.647+05:30  INFO 62219 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T17:15:17.648+05:30  INFO 62219 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T17:15:18.128+05:30  INFO 62219 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T17:15:18.176+05:30  INFO 62219 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 10 JPA repository interfaces.
+2025-02-04T17:15:18.592+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T17:15:18.601+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T17:15:18.601+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T17:15:18.631+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T17:15:18.632+05:30  INFO 62219 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 984 ms
+2025-02-04T17:15:18.738+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T17:15:18.775+05:30  INFO 62219 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T17:15:18.795+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T17:15:18.965+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T17:15:18.984+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T17:15:19.234+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56dcbf37
+2025-02-04T17:15:19.236+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T17:15:19.303+05:30  INFO 62219 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T17:15:19.930+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T17:15:20.046+05:30  INFO 62219 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:15:20.593+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T17:15:20.615+05:30  INFO 62219 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T17:15:20.625+05:30  INFO 62219 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 3.481 seconds (process running for 3.96)
+2025-02-04T17:15:43.003+05:30  INFO 62219 --- [HomieFix] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T17:15:43.010+05:30  INFO 62219 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T17:15:43.015+05:30  INFO 62219 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:15:43.017+05:30  INFO 62219 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T17:15:43.022+05:30  INFO 62219 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T17:15:56.805+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 62235 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T17:15:56.808+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T17:15:56.851+05:30  INFO 62235 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T17:15:56.852+05:30  INFO 62235 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T17:15:57.325+05:30  INFO 62235 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T17:15:57.374+05:30  INFO 62235 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 10 JPA repository interfaces.
+2025-02-04T17:15:57.762+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T17:15:57.772+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T17:15:57.772+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T17:15:57.803+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T17:15:57.804+05:30  INFO 62235 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 952 ms
+2025-02-04T17:15:57.906+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T17:15:57.948+05:30  INFO 62235 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T17:15:57.971+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T17:15:58.154+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T17:15:58.172+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T17:16:07.400+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1dd72df2
+2025-02-04T17:16:07.405+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T17:16:08.140+05:30  INFO 62235 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.35
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T17:16:08.770+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T17:16:17.681+05:30  INFO 62235 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:16:18.495+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T17:16:18.522+05:30  INFO 62235 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T17:16:18.531+05:30  INFO 62235 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 22.182 seconds (process running for 22.726)
+2025-02-04T17:21:15.808+05:30  INFO 62235 --- [HomieFix] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T17:21:15.824+05:30  INFO 62235 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T17:21:15.831+05:30  INFO 62235 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:21:15.837+05:30  INFO 62235 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T17:21:19.118+05:30  INFO 62235 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T17:53:55.569+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63457 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T17:53:55.572+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T17:53:55.616+05:30  INFO 63457 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T17:53:55.617+05:30  INFO 63457 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T17:53:56.185+05:30  INFO 63457 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T17:53:56.237+05:30  INFO 63457 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 10 JPA repository interfaces.
+2025-02-04T17:53:56.644+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T17:53:56.654+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T17:53:56.655+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T17:53:56.686+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T17:53:56.687+05:30  INFO 63457 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1070 ms
+2025-02-04T17:53:56.795+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T17:53:56.839+05:30  INFO 63457 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T17:53:56.866+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T17:53:57.093+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T17:53:57.116+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T17:53:57.384+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21154212
+2025-02-04T17:53:57.385+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T17:53:57.449+05:30  INFO 63457 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T17:53:58.182+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T17:53:58.437+05:30  INFO 63457 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:53:59.038+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T17:53:59.065+05:30  INFO 63457 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T17:53:59.075+05:30  INFO 63457 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 3.972 seconds (process running for 4.648)
+2025-02-04T17:55:41.562+05:30  INFO 63457 --- [HomieFix] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T17:55:41.571+05:30  INFO 63457 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T17:55:41.576+05:30  INFO 63457 --- [HomieFix] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T17:55:41.579+05:30  INFO 63457 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T17:55:41.585+05:30  INFO 63457 --- [HomieFix] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T19:50:16.700+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63600 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T19:50:16.703+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T19:50:16.728+05:30  INFO 63600 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T19:50:16.729+05:30  INFO 63600 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T19:50:17.122+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T19:50:17.164+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 10 JPA repository interfaces.
+2025-02-04T19:50:17.487+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T19:50:17.496+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T19:50:17.496+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T19:50:17.522+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T19:50:17.523+05:30  INFO 63600 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 793 ms
+2025-02-04T19:50:17.614+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T19:50:17.642+05:30  INFO 63600 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T19:50:17.660+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T19:50:17.817+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T19:50:17.834+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T19:50:18.024+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@58c877c3
+2025-02-04T19:50:18.025+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T19:50:18.077+05:30  INFO 63600 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T19:50:18.635+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T19:50:18.741+05:30  INFO 63600 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:50:19.250+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T19:50:19.277+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T19:50:19.285+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 2.818 seconds (process running for 3.154)
+2025-02-04T19:55:28.996+05:30  INFO 63600 --- [HomieFix] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+2025-02-04T19:55:29.001+05:30  INFO 63600 --- [HomieFix] [Thread-6] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T19:55:29.007+05:30  INFO 63600 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T19:55:29.012+05:30  INFO 63600 --- [HomieFix] [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:55:29.015+05:30  INFO 63600 --- [HomieFix] [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T19:55:29.019+05:30  INFO 63600 --- [HomieFix] [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T19:55:29.070+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63600 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T19:55:29.070+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T19:55:29.161+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T19:55:29.172+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 10 JPA repository interfaces.
+2025-02-04T19:55:29.250+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T19:55:29.251+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T19:55:29.251+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T19:55:29.261+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T19:55:29.262+05:30  INFO 63600 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 191 ms
+2025-02-04T19:55:29.288+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T19:55:29.289+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T19:55:29.296+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T19:55:29.296+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-02-04T19:55:29.311+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13561b5a
+2025-02-04T19:55:29.311+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-02-04T19:55:29.312+05:30  INFO 63600 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T19:55:29.400+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T19:55:29.461+05:30  INFO 63600 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:55:29.674+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T19:55:29.686+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T19:55:29.691+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 0.639 seconds (process running for 313.569)
+2025-02-04T19:55:29.692+05:30  INFO 63600 --- [HomieFix] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T19:55:43.639+05:30  INFO 63600 --- [HomieFix] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 45 class path changes (0 additions, 0 deletions, 45 modifications)
+2025-02-04T19:55:43.643+05:30  INFO 63600 --- [HomieFix] [Thread-8] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T19:55:43.646+05:30  INFO 63600 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T19:55:43.650+05:30  INFO 63600 --- [HomieFix] [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:55:43.651+05:30  INFO 63600 --- [HomieFix] [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-02-04T19:55:43.655+05:30  INFO 63600 --- [HomieFix] [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-02-04T19:55:43.705+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63600 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T19:55:43.705+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T19:55:43.787+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T19:55:43.798+05:30  INFO 63600 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 10 JPA repository interfaces.
+2025-02-04T19:55:43.863+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T19:55:43.863+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T19:55:43.864+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T19:55:43.871+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T19:55:43.871+05:30  INFO 63600 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 165 ms
+2025-02-04T19:55:43.895+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T19:55:43.896+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T19:55:43.901+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T19:55:43.902+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-02-04T19:55:43.917+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c62d3dd
+2025-02-04T19:55:43.917+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-02-04T19:55:43.918+05:30  INFO 63600 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T19:55:43.999+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T19:55:44.052+05:30  INFO 63600 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:55:44.242+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T19:55:44.252+05:30  INFO 63600 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T19:55:44.259+05:30  INFO 63600 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 0.567 seconds (process running for 328.137)
+2025-02-04T19:55:44.260+05:30  INFO 63600 --- [HomieFix] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T19:56:27.633+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63652 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T19:56:27.636+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T19:56:27.659+05:30  INFO 63652 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T19:56:27.660+05:30  INFO 63652 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T19:56:28.017+05:30  INFO 63652 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T19:56:28.059+05:30  INFO 63652 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 10 JPA repository interfaces.
+2025-02-04T19:56:28.375+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T19:56:28.387+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T19:56:28.387+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T19:56:28.413+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T19:56:28.413+05:30  INFO 63652 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
+2025-02-04T19:56:28.504+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T19:56:28.533+05:30  INFO 63652 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T19:56:28.551+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T19:56:28.705+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T19:56:28.722+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T19:56:28.911+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21be05ff
+2025-02-04T19:56:28.912+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T19:56:28.965+05:30  INFO 63652 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T19:56:29.520+05:30  INFO 63652 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T19:56:29.619+05:30  INFO 63652 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:56:30.131+05:30  WARN 63652 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-02-04T19:56:30.150+05:30  WARN 63652 --- [HomieFix] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-02-04T19:56:30.152+05:30  INFO 63652 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:56:30.154+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T19:56:30.157+05:30  INFO 63652 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-04T19:56:30.167+05:30  INFO 63652 --- [HomieFix] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-04T19:56:30.178+05:30 ERROR 63652 --- [HomieFix] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 1111 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 1111 or configure this application to listen on another port.
+
+2025-02-04T19:56:38.934+05:30  INFO 63600 --- [HomieFix] [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-02-04T19:56:38.935+05:30  INFO 63600 --- [HomieFix] [RMI TCP Connection(17)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T19:56:38.937+05:30  INFO 63600 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T19:56:38.938+05:30  INFO 63600 --- [HomieFix] [RMI TCP Connection(17)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:56:38.938+05:30  INFO 63600 --- [HomieFix] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-02-04T19:56:38.941+05:30  INFO 63600 --- [HomieFix] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-02-04T19:57:04.289+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Starting HomieFixApplication using Java 17.0.13 with PID 63676 (/Users/shajai/Documents/GitHub/HomieFIxWebApi/target/classes started by shajai in /Users/shajai/Documents/GitHub/HomieFIxWebApi)
+2025-02-04T19:57:04.290+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-02-04T19:57:04.315+05:30  INFO 63676 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-04T19:57:04.315+05:30  INFO 63676 --- [HomieFix] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-04T19:57:04.708+05:30  INFO 63676 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T19:57:04.752+05:30  INFO 63676 --- [HomieFix] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 10 JPA repository interfaces.
+2025-02-04T19:57:05.074+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-02-04T19:57:05.083+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T19:57:05.083+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T19:57:05.110+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T19:57:05.111+05:30  INFO 63676 --- [HomieFix] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 796 ms
+2025-02-04T19:57:05.200+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T19:57:05.230+05:30  INFO 63676 --- [HomieFix] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-04T19:57:05.248+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T19:57:05.399+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T19:57:05.416+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-04T19:57:05.602+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d278d35
+2025-02-04T19:57:05.603+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-04T19:57:05.655+05:30  INFO 63676 --- [HomieFix] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T19:57:06.219+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T19:57:06.297+05:30  INFO 63676 --- [HomieFix] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:57:06.811+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T19:57:06.837+05:30  INFO 63676 --- [HomieFix] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-02-04T19:57:06.845+05:30  INFO 63676 --- [HomieFix] [restartedMain] com.sart.HomieFix.HomieFixApplication    : Started HomieFixApplication in 2.791 seconds (process running for 3.148)
+2025-02-04T19:58:27.217+05:30  INFO 63676 --- [HomieFix] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-02-04T19:58:27.219+05:30  INFO 63676 --- [HomieFix] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T19:58:27.222+05:30  INFO 63676 --- [HomieFix] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T19:58:27.226+05:30  INFO 63676 --- [HomieFix] [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T19:58:27.228+05:30  INFO 63676 --- [HomieFix] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-04T19:58:27.232+05:30  INFO 63676 --- [HomieFix] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

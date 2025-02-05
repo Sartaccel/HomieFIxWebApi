@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/mobile")
 public class MobileNumberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MobileNumberController.class);
