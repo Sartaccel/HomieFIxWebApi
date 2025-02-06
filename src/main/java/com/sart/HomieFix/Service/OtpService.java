@@ -27,55 +27,50 @@ public class OtpService {
     @Autowired
     private MobileNumberRepository mobileNumberRepository;
 
-    // Map to store OTP and its expiration time
     private final Map<String, OtpDetails> otpMap = new HashMap<>();
 
     public String sendOtpToPhone(String mobileNumber) {
         String otp = generateOtp();
-        long expirationTime = System.currentTimeMillis() + 60000; // 1 minute validity
+        long expirationTime = System.currentTimeMillis() + 60000;
 
         PhoneNumber recipientPhoneNumber = new PhoneNumber(mobileNumber);
         PhoneNumber senderPhoneNumber = new PhoneNumber(otpConfiguration.getPhoneNumber());
         String msgBody = "Your HomieFix Login OTP is: " + otp;
 
-        // Send OTP via Twilio
         Message.creator(recipientPhoneNumber, senderPhoneNumber, msgBody).create();
 
-        // Store OTP and expiration time in memory (do not store in DB yet)
         otpMap.put(mobileNumber, new OtpDetails(otp, expirationTime));
 
         return "OTP sent successfully!";
     }
 
     public String validateOtp(String mobileNumber, String otp) {
-        if (otpMap.containsKey(mobileNumber)) {
-            OtpDetails otpDetails = otpMap.get(mobileNumber);
-
-            // Check if the OTP has expired
-            if (System.currentTimeMillis() > otpDetails.getExpirationTime()) {
-                otpMap.remove(mobileNumber);
-                return "OTP has expired. Please request a new one.";
-            }
-
-            // Validate the OTP
-            if (otpDetails.getOtp().equals(otp)) {
-                otpMap.remove(mobileNumber);
-
-                // Save the mobile number in the database
-                MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
-                if (mobile == null) {
-                    mobile = new MobileNumber(mobileNumber);
-                    mobile.setFirstLoginDate(LocalDate.now()); // Set the first login date to the current date
-                    mobileNumberRepository.save(mobile);
-
-                    // Create a default user profile linked to this mobile number
-                    userProfileRepository.save(new UserProfile("", "", mobile));
-                }
-
-                return "Mobile number " + mobileNumber + " verified successfully. First Login : " + mobile.getFirstLoginDate();
-            }
+        if (!otpMap.containsKey(mobileNumber)) {
+            return "Invalid OTP or mobile number.";
         }
-        return "Invalid OTP or mobile number.";
+
+        OtpDetails otpDetails = otpMap.get(mobileNumber);
+
+        if (System.currentTimeMillis() > otpDetails.getExpirationTime()) {
+            otpMap.remove(mobileNumber);
+            return "OTP has expired. Please request a new one.";
+        }
+
+        if (!otpDetails.getOtp().equals(otp)) {
+            return "Invalid OTP.";
+        }
+
+        otpMap.remove(mobileNumber);
+
+        MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
+        if (mobile == null) {
+            mobile = new MobileNumber(mobileNumber);
+            mobile.setFirstLoginDate(LocalDate.now());
+            mobileNumberRepository.save(mobile);
+            userProfileRepository.save(new UserProfile("", "", mobile));
+        }
+
+        return "Mobile number " + mobileNumber + " verified successfully. First Login: " + mobile.getFirstLoginDate();
     }
 
     private String generateOtp() {
@@ -83,7 +78,6 @@ public class OtpService {
         return String.format("%04d", otp);
     }
 
-    // Inner class to hold OTP details
     private static class OtpDetails {
         private final String otp;
         private final long expirationTime;

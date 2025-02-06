@@ -39,14 +39,13 @@ public class MobileNumberController {
     @PostMapping("/verifyOtp")
     public ResponseEntity<String> verifyOtp(@RequestParam String mobileNumber, @RequestParam String otp) {
         logger.info("Received request to verify OTP for mobile number: {}", mobileNumber);
-        try {
-            String response = otpService.validateOtp(mobileNumber, otp);
-            logger.info("OTP verification result for {}: {}", mobileNumber, response);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            logger.error("Error verifying OTP for {}: {}", mobileNumber, e.getMessage());
-            return ResponseEntity.badRequest().body("Error verifying OTP: " + e.getMessage());
+        String response = otpService.validateOtp(mobileNumber, otp);
+        if (response.startsWith("Invalid") || response.startsWith("OTP has expired")) {
+            logger.error("OTP verification failed for {}: {}", mobileNumber, response);
+            return ResponseEntity.badRequest().body(response);
         }
+        logger.info("OTP verification successful for {}: {}", mobileNumber, response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getFirstLoginDate")
