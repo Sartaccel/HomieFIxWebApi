@@ -19,46 +19,71 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
 
-    // Create a global coupon
     @PostMapping("/create")
-    public ResponseEntity<Coupon> createCoupon(
-            @RequestParam String code,
-            @RequestParam Double discountPercentage) {
+    public ResponseEntity<Coupon> createCoupon(@RequestParam String code, @RequestParam Double discountPercentage) {
         logger.info("Creating coupon with code: {} and discount: {}", code, discountPercentage);
-        Coupon coupon = couponService.createGlobalCoupon(code, discountPercentage);
-        logger.info("Coupon created successfully: {}", coupon);
-        return ResponseEntity.ok(coupon);
-    }
-
-    // Check if a user can use a coupon
-    @GetMapping("/validate")
-    public ResponseEntity<String> validateCoupon(@RequestParam Long userId, @RequestParam String couponCode) {
-        logger.info("Validating coupon: {} for user: {}", couponCode, userId);
-        boolean canUse = couponService.canUserUseCoupon(userId, couponCode);
-        if (canUse) {
-            logger.info("Coupon {} is valid for user {}", couponCode, userId);
-            return ResponseEntity.ok("Coupon is valid for this user");
-        } else {
-            logger.warn("Coupon {} is invalid or already used by user {}", couponCode, userId);
-            return ResponseEntity.badRequest().body("Coupon is invalid or already used by this user");
+        try {
+            Coupon coupon = couponService.createGlobalCoupon(code, discountPercentage);
+            logger.info("Coupon created successfully: {}", coupon);
+            return ResponseEntity.ok(coupon);
+        } catch (Exception e) {
+            logger.error("Error creating coupon: {}", e.getMessage());
+            return ResponseEntity.badRequest().build();
         }
     }
 
-    // Mark a coupon as used for a user
-    @PostMapping("/use")
-    public ResponseEntity<String> useCoupon(@RequestParam Long userId, @RequestParam String couponCode) {
-        logger.info("Marking coupon {} as used for user {}", couponCode, userId);
-        couponService.markCouponAsUsed(userId, couponCode);
-        logger.info("Coupon {} successfully marked as used for user {}", couponCode, userId);
-        return ResponseEntity.ok("Coupon marked as used for this user");
+    @GetMapping("/validate")
+    public ResponseEntity<String> validateCoupon(@RequestParam String mobileNumber, @RequestParam String couponCode) {
+        logger.info("Validating coupon: {} for mobile number: {}", couponCode, mobileNumber);
+        try {
+            boolean canUse = couponService.canUserUseCoupon(mobileNumber, couponCode);
+            if (canUse) {
+                logger.info("Coupon {} is valid for mobile number {}", couponCode, mobileNumber);
+                return ResponseEntity.ok("Coupon is valid for this mobile number");
+            } else {
+                logger.warn("Coupon {} is invalid or already used by mobile number {}", couponCode, mobileNumber);
+                return ResponseEntity.badRequest().body("Coupon is invalid or already used by this mobile number");
+            }
+        } catch (Exception e) {
+            logger.error("Error validating coupon: {}", e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    // Get all coupons available to a user
+    @PostMapping("/use")
+    public ResponseEntity<String> useCoupon(@RequestParam String mobileNumber, @RequestParam String couponCode) {
+        logger.info("Marking coupon {} as used for mobile number {}", couponCode, mobileNumber);
+        try {
+            couponService.markCouponAsUsed(mobileNumber, couponCode);
+            logger.info("Coupon {} successfully marked as used for mobile number {}", couponCode, mobileNumber);
+            return ResponseEntity.ok("Coupon marked as used for this mobile number");
+        } catch (Exception e) {
+            logger.error("Error using coupon: {}", e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/view")
-    public ResponseEntity<List<Coupon>> getCouponsForUser() {
+    public ResponseEntity<List<Coupon>> getCoupons() {
         logger.info("Fetching available coupons");
-        List<Coupon> coupons = couponService.getCouponsForUser();
-        logger.info("Coupons fetched: {}", coupons.size());
-        return ResponseEntity.ok(coupons);
+        try {
+            List<Coupon> coupons = couponService.getCoupons();
+            logger.info("Coupons fetched: {}", coupons.size());
+            return ResponseEntity.ok(coupons);
+        } catch (Exception e) {
+            logger.error("Error fetching coupons: {}", e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<Coupon> findCouponByCode(@RequestParam String code) {
+        try {
+            Coupon coupon = couponService.findCouponByCode(code);
+            return ResponseEntity.ok(coupon);
+        } catch (Exception e) {
+            logger.error("Error fetching coupon: {}", e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

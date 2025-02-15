@@ -3,6 +3,7 @@ package com.sart.HomieFix.Service;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.sart.HomieFix.Configuration.OtpConfiguration;
 import com.sart.HomieFix.Entity.MobileNumber;
@@ -51,28 +52,29 @@ public class OtpService {
         if (otpMap.containsKey(mobileNumber)) {
             OtpDetails otpDetails = otpMap.get(mobileNumber);
 
-            // Check if the OTP has expired
             if (System.currentTimeMillis() > otpDetails.getExpirationTime()) {
                 otpMap.remove(mobileNumber);
                 return "OTP has expired. Please request a new one.";
             }
 
-            // Validate the OTP
             if (otpDetails.getOtp().equals(otp)) {
                 otpMap.remove(mobileNumber);
 
-                // Save the mobile number in the database
-                MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
-                if (mobile == null) {
-                    mobile = new MobileNumber(mobileNumber);
-                    mobile.setFirstLoginDate(LocalDate.now()); // Set the first login date to the current date
+                Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber); // Correct type
+
+                if (mobileOptional.isPresent()) { // Check if MobileNumber exists
+                    MobileNumber mobile = mobileOptional.get(); // Get the MobileNumber entity
+                    return "Mobile number " + mobileNumber + " verified successfully. First Login : " + mobile.getFirstLoginDate();
+                } else { // MobileNumber does not exist
+                    MobileNumber mobile = new MobileNumber(mobileNumber);
+                    mobile.setFirstLoginDate(LocalDate.now());
                     mobileNumberRepository.save(mobile);
 
-                    // Create a default user profile linked to this mobile number
-                    userProfileRepository.save(new UserProfile("", "", mobile));
-                }
+                    UserProfile userProfile = new UserProfile("", "", mobile);
+                    userProfileRepository.save(userProfile);
 
-                return "Mobile number " + mobileNumber + " verified successfully. First Login : " + mobile.getFirstLoginDate();
+                    return "Mobile number " + mobileNumber + " verified successfully (new user created)."; // Indicate new user
+                }
             }
         }
         return "Invalid OTP or mobile number.";

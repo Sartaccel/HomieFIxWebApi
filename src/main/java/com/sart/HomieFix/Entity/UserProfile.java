@@ -14,9 +14,13 @@ public class UserProfile {
     @Column(nullable = false)
     private boolean emailVerified = false;
 
-    @OneToOne
-    @JoinColumn(name = "mobile_id")
+    @ManyToOne  // Changed to ManyToOne
+    @JoinColumn(name = "mobile_id") // Removed unique=true
     private MobileNumber mobileNumber;
+
+    @Column(nullable = false)
+    private boolean isActive = true; // New field for user status
+
 
     public Long getId() {
         return id;
@@ -58,8 +62,17 @@ public class UserProfile {
         this.mobileNumber = mobileNumber;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public UserProfile() {
         this.emailVerified = false;
+        this.isActive = true; // Initialize isActive in the default constructor
     }
 
     public UserProfile(String fullName, String email, MobileNumber mobileNumber) {
@@ -67,6 +80,7 @@ public class UserProfile {
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.emailVerified = false;
+        this.isActive = true; // Initialize isActive in the parameterized constructor
     }
 
 }

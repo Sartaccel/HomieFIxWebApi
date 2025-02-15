@@ -93,4 +93,17 @@ public class ProfileController {
             return ResponseEntity.badRequest().body("Email verification failed: " + e.getMessage());
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteUser(@RequestParam String mobileNumber) {
+        logger.info("Received request to delete user with mobile number: {}", mobileNumber);
+
+        try {
+            profileService.deleteUser(mobileNumber);
+            return ResponseEntity.ok("User deleted successfully.");
+        } catch (Exception e) {
+            logger.error("Error deleting user with mobile number {}: {}", mobileNumber, e.getMessage());
+            return ResponseEntity.badRequest().body("Error deleting user: " + e.getMessage());
+        }
+    }
 }

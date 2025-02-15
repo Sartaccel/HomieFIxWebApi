@@ -18,6 +18,10 @@ public class Booking {
     @JoinColumn(name = "address_id", nullable = false)
     private AddressEntity deliveryAddress;
 
+    @ManyToOne
+    @JoinColumn(name = "worker_id")
+    private Worker worker; // Reference to the assigned worker
+
     private LocalDate bookingDate;
     private LocalDate bookedDate;
     private String timeSlot;
@@ -27,6 +31,7 @@ public class Booking {
 
     private String cancelReason; // New field to store cancellation reason
 
+    // Constructors, Getters, and Setters
     public Booking() {
     }
 
@@ -66,6 +71,14 @@ public class Booking {
 
     public void setDeliveryAddress(AddressEntity deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
+    }
+
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 
     public LocalDate getBookingDate() {

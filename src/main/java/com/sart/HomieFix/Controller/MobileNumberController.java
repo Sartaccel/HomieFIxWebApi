@@ -6,13 +6,14 @@ import com.sart.HomieFix.Service.OtpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/mobile")
 public class MobileNumberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MobileNumberController.class);
@@ -50,22 +51,30 @@ public class MobileNumberController {
     }
 
     @GetMapping("/getFirstLoginDate")
-    public ResponseEntity<String> getFirstLoginDate(@RequestParam String mobileNumber) {
+    public ResponseEntity<?> getFirstLoginDate(@RequestParam String mobileNumber) {
         logger.info("Fetching first login date for mobile number: {}", mobileNumber);
         try {
-            Optional<MobileNumber> mobile = Optional.ofNullable(mobileNumberRepository.findByMobileNumber(mobileNumber));
+            Optional<MobileNumber> mobile = mobileNumberRepository.findByMobileNumber(mobileNumber); // Correct type
 
-            if (mobile.isPresent() && mobile.get().getFirstLoginDate() != null) {
-                String firstLoginDate = mobile.get().getFirstLoginDate().toString();
-                logger.info("First login date for mobile number {}: {}", mobileNumber, firstLoginDate);
-                return ResponseEntity.ok("First login date for mobile number " + mobileNumber + " is: " + firstLoginDate);
+            if (mobile.isPresent()) { // Simplified check
+                MobileNumber mobileNumberEntity = mobile.get(); // Get the MobileNumber entity
+                if (mobileNumberEntity.getFirstLoginDate() != null) {
+                    String firstLoginDate = mobileNumberEntity.getFirstLoginDate().toString();
+                    logger.info("First login date for mobile number {}: {}", mobileNumber, firstLoginDate);
+                    return ResponseEntity.ok("{\"firstLoginDate\": \"" + firstLoginDate + "\"}");
+                } else {
+                    logger.warn("No first login date found for mobile number: {}", mobileNumber);
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"No first login date found for mobile number: " + mobileNumber + "\"}");
+                }
+            } else { // Handle case where mobile number is not found
+                logger.warn("Mobile number not found: {}", mobileNumber);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"Mobile number not found: " + mobileNumber + "\"}");
             }
 
-            logger.warn("No first login date found for mobile number: {}", mobileNumber);
-            return ResponseEntity.ok("No first login date found for mobile number: " + mobileNumber);
+
         } catch (Exception e) {
             logger.error("Error fetching first login date for {}: {}", mobileNumber, e.getMessage());
-            return ResponseEntity.badRequest().body("Error fetching first login date: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"Error fetching first login date: " + e.getMessage() + "\"}");
         }
     }
 }

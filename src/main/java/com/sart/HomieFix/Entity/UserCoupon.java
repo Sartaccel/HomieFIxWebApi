@@ -10,26 +10,23 @@ public class UserCoupon {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserProfile user;
+    @JoinColumn(name = "mobile_id", nullable = false)
+    private MobileNumber mobileNumber;
 
     @ManyToOne
     @JoinColumn(name = "coupon_id", nullable = false)
     private Coupon coupon;
 
     @Column(nullable = false)
-    private boolean isUsed;
+    private boolean isUsed = false;
 
-    public UserCoupon() {
-    }
+    public UserCoupon() {}
 
-    public UserCoupon(UserProfile user, Coupon coupon, boolean isUsed) {
-        this.user = user;
+    public UserCoupon(MobileNumber mobileNumber, Coupon coupon) {
+        this.mobileNumber = mobileNumber;
         this.coupon = coupon;
-        this.isUsed = isUsed;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -38,12 +35,12 @@ public class UserCoupon {
         this.id = id;
     }
 
-    public UserProfile getUser() {
-        return user;
+    public MobileNumber getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setUser(UserProfile user) {
-        this.user = user;
+    public void setMobileNumber(MobileNumber mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public Coupon getCoupon() {

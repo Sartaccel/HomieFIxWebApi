@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -34,20 +36,21 @@ public class ProfileService {
 
     private static final int TOKEN_EXPIRATION_MINUTES = 2; // Token expiration time
 
-    public UserProfile getUserProfile(String mobileNumber) {
+    public List<UserProfile> getUserProfile(String mobileNumber) {
         logger.info("Fetching profile for mobile number: {}", mobileNumber);
-        MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
+        Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber);
 
-        if (mobile == null) {
+        if (mobileOptional.isEmpty()) {
             logger.warn("Mobile number not found: {}", mobileNumber);
             throw new RuntimeException("Mobile number not found.");
         }
 
-        UserProfile userProfile = userProfileRepository.findByMobileNumberId(mobile.getId());
+        MobileNumber mobile = mobileOptional.get();
+        List<UserProfile> userProfile = userProfileRepository.findByMobileNumberId(mobile.getId());
 
-        if (userProfile == null) {
-            logger.warn("No profile found for mobile number: {}", mobileNumber);
-            throw new RuntimeException("Profile not found.");
+        if (userProfile == null ||!userProfile.stream().anyMatch(UserProfile::isActive)) {
+            logger.warn("No active profile found for mobile number: {}", mobileNumber);
+            throw new RuntimeException("Active profile not found.");
         }
 
         logger.info("Profile fetched successfully for {}", mobileNumber);
@@ -57,16 +60,19 @@ public class ProfileService {
     @Transactional
     public String verifyAndSendEmail(String email, String mobileNumber) {
         logger.info("Verifying email {} for mobile {}", email, mobileNumber);
-        MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
+        Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber);
 
-        if (mobile == null) {
+        if (mobileOptional.isEmpty()) {
             logger.warn("Mobile number not verified: {}", mobileNumber);
             return "Mobile number not verified!";
         }
 
-        UserProfile profile = userProfileRepository.findByMobileNumberId(mobile.getId());
+        MobileNumber mobile = mobileOptional.get();
+        UserProfile profile = userProfileRepository.findByMobileNumberId(mobile.getId()).stream().findFirst().orElse(null);
+
         if (profile == null) {
             profile = new UserProfile("", email, mobile);
+            profile.setActive(true); // Set isActive to true
             userProfileRepository.save(profile);
             logger.info("New user profile created for mobile: {}", mobileNumber);
         } else {
@@ -76,10 +82,10 @@ public class ProfileService {
         }
 
         VerificationToken existingToken = verificationTokenRepository.findByUserProfile(profile);
-        if (existingToken != null && existingToken.getExpirationTime().isAfter(LocalDateTime.now())) {
+        if (existingToken!= null && existingToken.getExpirationTime().isAfter(LocalDateTime.now())) {
             logger.info("Token already sent for mobile: {}", mobileNumber);
             return "Token already sent! Please check your email.";
-        } else if (existingToken != null) {
+        } else if (existingToken!= null) {
             verificationTokenRepository.delete(existingToken);
         }
 
@@ -95,13 +101,16 @@ public class ProfileService {
 
     public boolean isEmailVerified(String mobileNumber) {
         logger.info("Checking email verification status for {}", mobileNumber);
-        MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
-        if (mobile == null) {
+        Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber);
+
+        if (mobileOptional.isEmpty()) {
             logger.warn("Mobile number not found: {}", mobileNumber);
             return false;
         }
-        UserProfile profile = userProfileRepository.findByMobileNumberId(mobile.getId());
-        boolean isVerified = profile != null && profile.isEmailVerified();
+
+        MobileNumber mobile = mobileOptional.get();
+        UserProfile profile = userProfileRepository.findByMobileNumberId(mobile.getId()).stream().findFirst().orElse(null);
+        boolean isVerified = profile!= null && profile.isEmailVerified();
         logger.info("Email verification status for {}: {}", mobileNumber, isVerified);
         return isVerified;
     }
@@ -109,23 +118,42 @@ public class ProfileService {
     @Transactional
     public String saveOrUpdateUserProfile(String fullName, String email, String mobileNumber) {
         logger.info("Saving/updating user profile for mobile: {}", mobileNumber);
-        MobileNumber mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
+        Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber);
 
-        if (mobile == null) {
-            logger.error("Mobile number not verified: {}", mobileNumber);
-            throw new RuntimeException("Mobile number not verified!");
-        }
+        // Use orElseGet to optimize Optional handling
+        UserProfile profile = mobileOptional.map(mobile -> userProfileRepository.findByMobileNumberId(mobile.getId()).stream().findFirst().orElse(null))
+                .orElseGet(() -> {
+                    // Mobile number doesn't exist, create new mobile number and profile
+                    MobileNumber newMobile = new MobileNumber(mobileNumber);
+                    mobileNumberRepository.save(newMobile);
+                    return new UserProfile(fullName, email, newMobile);
+                });
 
-        UserProfile profile = userProfileRepository.findByMobileNumberId(mobile.getId());
-        if (profile == null) {
-            profile = new UserProfile(fullName, email, mobile);
-            userProfileRepository.save(profile);
-            logger.info("User profile created for mobile: {}", mobileNumber);
-            return "User profile created successfully.";
-        } else {
+        if (profile!= null &&!profile.isActive()) {
+            // Mobile number exists and is inactive, create a *new* profile
+            profile = new UserProfile(fullName, email, profile.getMobileNumber()); // Associate with the existing mobile
+            profile.setActive(true); // Ensure new profile is active
+        } else if (profile!= null) {
+            // Mobile number exists and is active, update existing profile
             profile.setFullName(fullName);
             profile.setEmail(email);
-            userProfileRepository.save(profile);
+        } else {
+            // Mobile number doesn't exist, create new profile with new mobile number
+            MobileNumber newMobile = new MobileNumber(mobileNumber);
+            mobileNumberRepository.save(newMobile);
+            profile = new UserProfile(fullName, email, newMobile);
+            profile.setActive(true);
+        }
+
+        userProfileRepository.save(profile);
+
+        if (profile.getId() == null) {
+            logger.info("New mobile number and user profile created for mobile: {}", mobileNumber);
+            return "New mobile number and user profile created successfully.";
+        } else if (!profile.isActive()) { // Check if it was a new profile created for an inactive mobile
+            logger.info("New user profile created for mobile: {}", mobileNumber);
+            return "New user profile created successfully.";
+        } else {
             logger.info("User profile updated for mobile: {}", mobileNumber);
             return "User profile updated successfully.";
         }
@@ -153,5 +181,32 @@ public class ProfileService {
 
         logger.info("Email verified successfully for {}", profile.getEmail());
         return "Email verified successfully!";
+    }
+
+    @Transactional
+    public void deleteUser(String mobileNumber) {
+        logger.info("Deleting user with mobile number: {}", mobileNumber);
+        Optional<MobileNumber> mobileOptional = mobileNumberRepository.findByMobileNumber(mobileNumber);
+
+        if (mobileOptional.isEmpty()) {
+            logger.warn("Mobile number not found: {}", mobileNumber);
+            throw new RuntimeException("Mobile number not found.");
+        }
+
+        MobileNumber mobile = mobileOptional.get();
+        List<UserProfile> userProfiles = userProfileRepository.findByMobileNumberId(mobile.getId()); // Fetch all profiles
+
+        if (userProfiles.isEmpty()) {
+            logger.warn("No user found with mobile number: {}", mobileNumber);
+            throw new RuntimeException("User not found.");
+        }
+
+        for (UserProfile userProfile: userProfiles) { // Deactivate all profiles
+            userProfile.setActive(false);
+            userProfileRepository.save(userProfile);
+            logger.info("User profile with ID {} deactivated successfully.", userProfile.getId());
+        }
+
+        logger.info("All user profiles with mobile number {} deactivated successfully.", mobileNumber);
     }
 }

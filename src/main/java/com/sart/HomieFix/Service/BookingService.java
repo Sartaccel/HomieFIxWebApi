@@ -33,6 +33,13 @@ public class BookingService {
     @Autowired
     private UserCouponRepository userCouponRepository;
 
+    @Autowired
+    private WorkerRepository workerRepository;
+
+    @Autowired
+    private MobileNumberRepository mobileNumberRepository; // Autowire MobileNumberRepository
+
+
     public List<String> getAvailableDates() {
         List<String> availableDates = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
@@ -66,7 +73,21 @@ public class BookingService {
             Optional<Coupon> optionalCoupon = couponRepository.findByCode(couponCode);
             if (optionalCoupon.isPresent()) {
                 Coupon coupon = optionalCoupon.get();
+                MobileNumber mobile = userProfile.getMobileNumber();
+
+                if (mobile == null) {
+                    throw new RuntimeException("Mobile number not found for user profile.");
+                }
+
+                if (userCouponRepository.existsByMobileNumberAndCoupon(mobile, coupon)) {
+                    throw new RuntimeException("Coupon already used by this mobile number.");
+                }
+
                 totalPrice = totalPrice - (totalPrice * (coupon.getDiscountPercentage() / 100));
+
+                UserCoupon userCoupon = new UserCoupon(mobile, coupon);
+                userCoupon.setUsed(true);
+                userCouponRepository.save(userCoupon);
             }
         }
 
@@ -94,6 +115,19 @@ public class BookingService {
         }
 
         booking.setBookingStatus(status.toUpperCase());
+        return bookingRepository.save(booking);
+    }
+
+    public Booking assignWorkerToBooking(Long bookingId, Long workerId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        Worker worker = workerRepository.findById(workerId)
+                .orElseThrow(() -> new RuntimeException("Worker not found"));
+
+        booking.setWorker(worker);
+        booking.setBookingStatus("ASSIGNED");
+
         return bookingRepository.save(booking);
     }
 

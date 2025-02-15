@@ -56,8 +56,10 @@ public class BookingController {
             @RequestParam String selectedDate,
             @RequestParam String selectedTimeSlot,
             @RequestParam(required = false) String couponCode) {
+
         logger.info("Creating booking for User ID: {}, Address ID: {}, Date: {}, Time Slot: {}, Coupon: {}",
                 userProfileId, addressId, selectedDate, selectedTimeSlot, couponCode);
+
         try {
             LocalDate bookedDate = LocalDate.parse(selectedDate, dateFormatter);
             Booking booking = bookingService.createBooking(userProfileId, addressId, bookedDate, selectedTimeSlot, couponCode);
@@ -73,10 +75,10 @@ public class BookingController {
     public ResponseEntity<?> updateBookingStatus(@PathVariable Long bookingId, @RequestParam String status) {
         logger.info("Updating booking status. Booking ID: {}, New Status: {}", bookingId, status);
         try {
-            List<String> validStatuses = List.of("PENDING", "COMPLETED");
+            List<String> validStatuses = List.of("PENDING", "COMPLETED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
             if (!validStatuses.contains(status.toUpperCase())) {
                 logger.warn("Invalid status provided: {}", status);
-                return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED.");
+                return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED, CANCELLED, ASSIGNED.");
             }
             Booking updatedBooking = bookingService.updateBookingStatus(bookingId, status);
             logger.info("Booking status updated successfully for Booking ID: {}", bookingId);
@@ -84,6 +86,19 @@ public class BookingController {
         } catch (Exception e) {
             logger.error("Error updating booking status for Booking ID {}: {}", bookingId, e.getMessage());
             return ResponseEntity.badRequest().body("Error updating booking status: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/assign-worker/{bookingId}")
+    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId) {
+        logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
+        try {
+            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId);
+            logger.info("Worker assigned successfully to Booking ID: {}", bookingId);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            logger.error("Error assigning worker to booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error assigning worker to booking: " + e.getMessage());
         }
     }
 

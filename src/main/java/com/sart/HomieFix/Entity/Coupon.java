@@ -11,11 +11,9 @@ public class Coupon {
 
     private String code;
     private Double discountPercentage;
-    private boolean isUsed; // Optional: track if the coupon is globally used
+    private boolean isUsed;
 
-    // Constructors, Getters, and Setters
-    public Coupon() {
-    }
+    public Coupon() {}
 
     public Coupon(String code, Double discountPercentage) {
         this.code = code;
