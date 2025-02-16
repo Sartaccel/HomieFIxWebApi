@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<AddressEntity, Long> {
     List<AddressEntity> findByMobileNumber(String mobileNumber);
+    List<AddressEntity> findByUserProfileId(Long userProfileId);
 }
