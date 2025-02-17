@@ -1,0 +1,27 @@
+package com.sart.HomieFix.Service;
+
+import com.sart.HomieFix.Entity.AdminLogin;
+import com.sart.HomieFix.Repository.AdminLoginRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import java.util.Optional;
+
+
+@Service
+public class AdminLoginService {
+
+    @Autowired
+    private AdminLoginRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public AdminLogin saveUser(AdminLogin adminLogin) {
+        return userRepository.save(adminLogin);
+    }
+
+    public Optional<AdminLogin> findByUsername(String username) {
+        return userRepository.findByUsername(username);  // Fixed: Now using the instance
+    }
+}
