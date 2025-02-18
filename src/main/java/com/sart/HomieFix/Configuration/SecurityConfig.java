@@ -28,8 +28,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection for stateless authentication
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // Allow signup and login without authentication
-                        .anyRequest().authenticated() // Protect all other endpoints
+                		  .requestMatchers("/**").permitAll()
+//                        .requestMatchers("/auth/**").permitAll() // Allow signup and login without authentication
+//                        .anyRequest().authenticated() // Protect all other endpoints
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless session (no cookies)

@@ -114,6 +114,26 @@ public class BookingController {
             return ResponseEntity.badRequest().body("Error canceling booking: " + e.getMessage());
         }
     }
+    
+    @PutMapping("/reschedule/{bookingId}")
+    public ResponseEntity<?> rescheduleBooking(
+            @PathVariable Long bookingId,
+            @RequestParam String selectedDate,
+            @RequestParam String selectedTimeSlot) {
+
+        logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}",
+                bookingId, selectedDate, selectedTimeSlot);
+
+        try {
+            LocalDate bookedDate = LocalDate.parse(selectedDate, dateFormatter);
+            Booking rescheduledBooking = bookingService.rescheduleBooking(bookingId, bookedDate, selectedTimeSlot);
+            logger.info("Booking rescheduled successfully. Booking ID: {}", bookingId);
+            return ResponseEntity.ok(rescheduledBooking);
+        } catch (Exception e) {
+            logger.error("Error rescheduling booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error rescheduling booking: " + e.getMessage());
+        }
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Booking>> getAllBookings() {
