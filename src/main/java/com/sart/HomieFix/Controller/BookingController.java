@@ -75,7 +75,7 @@ public class BookingController {
     public ResponseEntity<?> updateBookingStatus(@PathVariable Long bookingId, @RequestParam String status) {
         logger.info("Updating booking status. Booking ID: {}, New Status: {}", bookingId, status);
         try {
-            List<String> validStatuses = List.of("PENDING", "COMPLETED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
+            List<String> validStatuses = List.of("PENDING", "COMPLETED","STARTED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
             if (!validStatuses.contains(status.toUpperCase())) {
                 logger.warn("Invalid status provided: {}", status);
                 return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED, CANCELLED, ASSIGNED.");
