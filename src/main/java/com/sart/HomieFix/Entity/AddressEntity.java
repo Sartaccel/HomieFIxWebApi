@@ -1,9 +1,6 @@
 package com.sart.HomieFix.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class AddressEntity {
@@ -20,10 +17,14 @@ public class AddressEntity {
     private String district;
     private String state;
 
-    public AddressEntity(long id, String typeofAddress, String mobileNumber, String pincode, String houseNumber,
+    @ManyToOne
+    @JoinColumn(name = "user_profile_id")
+    private UserProfile userProfile;
+
+    public AddressEntity() {} // Important: Add a no-args constructor
+
+    public AddressEntity(String typeofAddress, String mobileNumber, String pincode, String houseNumber,
                          String town, String landmark, String district, String state) {
-        super();
-        this.id = id;
         this.typeofAddress = typeofAddress;
         this.mobileNumber = mobileNumber;
         this.pincode = pincode;
@@ -34,9 +35,8 @@ public class AddressEntity {
         this.state = state;
     }
 
-    public AddressEntity() {
-        // TODO Auto-generated constructor stub
-    }
+
+    // Getters and setters for all fields (including userProfile)
 
     public long getId() {
         return id;
@@ -109,5 +109,12 @@ public class AddressEntity {
     public void setState(String state) {
         this.state = state;
     }
-}
 
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+}

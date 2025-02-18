@@ -18,7 +18,7 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private AdminLoginService userService;
+    private AdminLoginService adminLoginService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -27,22 +27,22 @@ public class AuthController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody AdminLogin user) {
-        if (userService.findByUsername(user.getUsername()).isPresent()) {
+    public ResponseEntity<?> signup(@RequestBody AdminLogin adminLogin) {
+        if (adminLoginService.findByUsername(adminLogin.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Username already exists");
         }
 
-        System.out.println("Password Before Hashing: " + user.getPassword());
+        System.out.println("Password Before Hashing: " + adminLogin.getPassword());
 
         // Hash the password
-        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        String encryptedPassword = passwordEncoder.encode(adminLogin.getPassword());
         System.out.println("Password After Hashing: " + encryptedPassword);
 
         // Set the hashed password
-        user.setPassword(encryptedPassword);
+        adminLogin.setPassword(encryptedPassword);
 
         // Save the user
-        userService.saveUser(user);
+        adminLoginService.saveUser(adminLogin);
 
         return ResponseEntity.ok("User registered successfully");
     }
@@ -52,13 +52,13 @@ public class AuthController {
         String username = credentials.get("username");
         String password = credentials.get("password");
 
-        return userService.findByUsername(username)
-                .map(user -> {
+        return adminLoginService.findByUsername(username)
+                .map(adminLogin -> {
                     System.out.println("Entered Password: " + password);
-                    System.out.println("Stored Hashed Password: " + user.getPassword());
+                    System.out.println("Stored Hashed Password: " + adminLogin.getPassword());
 
                     // Use matches() to compare entered password with the stored hash
-                    boolean passwordMatches = passwordEncoder.matches(password, user.getPassword());
+                    boolean passwordMatches = passwordEncoder.matches(password, adminLogin.getPassword());
                     System.out.println("Password Match Result: " + passwordMatches);
 
                     if (passwordMatches) {

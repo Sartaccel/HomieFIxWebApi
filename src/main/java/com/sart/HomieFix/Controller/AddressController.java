@@ -20,12 +20,11 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    // Add a new address
-    @PostMapping("/add")
-    public ResponseEntity<?> addAddress(@RequestBody AddressEntity addressEntity) {
+    @PostMapping("/add/{userId}")
+    public ResponseEntity<?> addAddress(@RequestBody AddressEntity addressEntity, @PathVariable Long userId) {
         logger.info("Adding new address: {}", addressEntity);
         try {
-            AddressEntity savedAddress = addressService.addAddress(addressEntity);
+            AddressEntity savedAddress = addressService.addAddress(addressEntity, userId);
             logger.info("Address added successfully with ID {}", savedAddress.getId());
             return ResponseEntity.ok(savedAddress);
         } catch (Exception e) {
@@ -34,7 +33,6 @@ public class AddressController {
         }
     }
 
-    // Get all addresses by mobile number
     @GetMapping("/{mobileNumber}")
     public ResponseEntity<?> findByMobileNumber(@PathVariable String mobileNumber) {
         logger.info("Fetching addresses for mobile number: {}", mobileNumber);
@@ -52,7 +50,23 @@ public class AddressController {
         }
     }
 
-    // Get all addresses
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> findByUserId(@PathVariable Long userId) {
+        logger.info("Fetching addresses for user ID: {}", userId);
+        try {
+            List<AddressEntity> addresses = addressService.findByUserId(userId);
+            if (addresses.isEmpty()) {
+                logger.warn("No addresses found for user ID: {}", userId);
+                return ResponseEntity.noContent().build(); // Or return empty list: return ResponseEntity.ok(List.of());
+            }
+            logger.info("Found {} addresses for user ID: {}", addresses.size(), userId);
+            return ResponseEntity.ok(addresses);
+        } catch (Exception e) {
+            logger.error("Error fetching addresses: {}", e.getMessage());
+            return ResponseEntity.internalServerError().body("Failed to fetch addresses");
+        }
+    }
+
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         logger.info("Fetching all addresses");
@@ -66,7 +80,6 @@ public class AddressController {
         }
     }
 
-    // Update an address by ID
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateById(@PathVariable long id, @RequestBody AddressEntity updatedAddress) {
         logger.info("Updating address with ID: {}", id);
@@ -85,7 +98,6 @@ public class AddressController {
         }
     }
 
-    // Delete an address by ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable long id) {
         logger.info("Deleting address with ID: {}", id);
