@@ -90,7 +90,7 @@ public class BookingController {
     }
 
     @PutMapping("/assign-worker/{bookingId}")
-    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId, @RequestParam String notes) {
+    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId, @RequestParam(required = false) String notes) {
         logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
         try {
             Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId,notes);
