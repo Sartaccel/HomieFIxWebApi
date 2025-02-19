@@ -28,6 +28,7 @@ public class Booking {
     private String productName;
     private Double totalPrice;
     private String bookingStatus;
+    private String notes;
     private String rescheduleReason;
 
     private String cancelReason; // New field to store cancellation reason
@@ -128,6 +129,14 @@ public class Booking {
 
     public void setBookingStatus(String bookingStatus) {
         this.bookingStatus = bookingStatus;
+    }
+    
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String getCancelReason() {

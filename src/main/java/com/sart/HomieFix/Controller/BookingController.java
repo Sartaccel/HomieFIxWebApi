@@ -90,10 +90,10 @@ public class BookingController {
     }
 
     @PutMapping("/assign-worker/{bookingId}")
-    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId) {
+    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId, @RequestParam String notes) {
         logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
         try {
-            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId);
+            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId,notes);
             logger.info("Worker assigned successfully to Booking ID: {}", bookingId);
             return ResponseEntity.ok(updatedBooking);
         } catch (Exception e) {
