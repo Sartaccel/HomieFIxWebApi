@@ -106,7 +106,7 @@ public class BookingService {
         return booking;
     }
     
-    public Booking rescheduleBooking(Long bookingId, LocalDate bookedDate, String timeSlot) {
+    public Booking rescheduleBooking(Long bookingId, LocalDate bookedDate, String timeSlot, String rescheduleReason) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
 
@@ -115,6 +115,7 @@ public class BookingService {
             booking.setBookedDate(bookedDate);
             booking.setTimeSlot(timeSlot);
             booking.setBookingStatus("RESCHEDULED"); // Update status to RESCHEDULED
+            booking.setRescheduleReason(rescheduleReason); // Set the reschedule reason
         } else {
             throw new RuntimeException("New date and time are the same as the existing ones.");
         }

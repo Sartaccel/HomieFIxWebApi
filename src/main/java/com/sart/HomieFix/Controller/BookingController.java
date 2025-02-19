@@ -119,14 +119,15 @@ public class BookingController {
     public ResponseEntity<?> rescheduleBooking(
             @PathVariable Long bookingId,
             @RequestParam String selectedDate,
-            @RequestParam String selectedTimeSlot) {
+            @RequestParam String selectedTimeSlot,
+            @RequestParam String rescheduleReason) { // Add rescheduleReason parameter
 
-        logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}",
-                bookingId, selectedDate, selectedTimeSlot);
+        logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}, Reason: {}",
+                bookingId, selectedDate, selectedTimeSlot, rescheduleReason);
 
         try {
             LocalDate bookedDate = LocalDate.parse(selectedDate, dateFormatter);
-            Booking rescheduledBooking = bookingService.rescheduleBooking(bookingId, bookedDate, selectedTimeSlot);
+            Booking rescheduledBooking = bookingService.rescheduleBooking(bookingId, bookedDate, selectedTimeSlot, rescheduleReason);
             logger.info("Booking rescheduled successfully. Booking ID: {}", bookingId);
             return ResponseEntity.ok(rescheduledBooking);
         } catch (Exception e) {
