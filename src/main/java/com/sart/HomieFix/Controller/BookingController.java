@@ -75,7 +75,7 @@ public class BookingController {
     public ResponseEntity<?> updateBookingStatus(@PathVariable Long bookingId, @RequestParam String status) {
         logger.info("Updating booking status. Booking ID: {}, New Status: {}", bookingId, status);
         try {
-            List<String> validStatuses = List.of("PENDING", "COMPLETED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
+            List<String> validStatuses = List.of("PENDING", "COMPLETED","STARTED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
             if (!validStatuses.contains(status.toUpperCase())) {
                 logger.warn("Invalid status provided: {}", status);
                 return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED, CANCELLED, ASSIGNED.");
@@ -112,6 +112,27 @@ public class BookingController {
         } catch (Exception e) {
             logger.error("Error canceling booking for Booking ID {}: {}", bookingId, e.getMessage());
             return ResponseEntity.badRequest().body("Error canceling booking: " + e.getMessage());
+        }
+    }
+    
+    @PutMapping("/reschedule/{bookingId}")
+    public ResponseEntity<?> rescheduleBooking(
+            @PathVariable Long bookingId,
+            @RequestParam String selectedDate,
+            @RequestParam String selectedTimeSlot,
+            @RequestParam String rescheduleReason) { // Add rescheduleReason parameter
+
+        logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}, Reason: {}",
+                bookingId, selectedDate, selectedTimeSlot, rescheduleReason);
+
+        try {
+            LocalDate bookedDate = LocalDate.parse(selectedDate, dateFormatter);
+            Booking rescheduledBooking = bookingService.rescheduleBooking(bookingId, bookedDate, selectedTimeSlot, rescheduleReason);
+            logger.info("Booking rescheduled successfully. Booking ID: {}", bookingId);
+            return ResponseEntity.ok(rescheduledBooking);
+        } catch (Exception e) {
+            logger.error("Error rescheduling booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error rescheduling booking: " + e.getMessage());
         }
     }
 

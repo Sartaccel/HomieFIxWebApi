@@ -105,6 +105,23 @@ public class BookingService {
         cartRepository.deleteAll(cartItems);
         return booking;
     }
+    
+    public Booking rescheduleBooking(Long bookingId, LocalDate bookedDate, String timeSlot, String rescheduleReason) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Check if bookedDate or timeSlot has changed
+        if (!booking.getBookedDate().equals(bookedDate) || !booking.getTimeSlot().equals(timeSlot)) {
+            booking.setBookedDate(bookedDate);
+            booking.setTimeSlot(timeSlot);
+            booking.setBookingStatus("RESCHEDULED"); // Update status to RESCHEDULED
+            booking.setRescheduleReason(rescheduleReason); // Set the reschedule reason
+        } else {
+            throw new RuntimeException("New date and time are the same as the existing ones.");
+        }
+
+        return bookingRepository.save(booking);
+    }
 
     public Booking updateBookingStatus(Long bookingId, String status) {
         Booking booking = bookingRepository.findById(bookingId)
