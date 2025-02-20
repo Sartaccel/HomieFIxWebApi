@@ -227,6 +227,11 @@ public class Worker {
 	}
 
 	public void setAverageRating(Double averageRating) {
-		this.averageRating = averageRating;
-	}
+        if (averageRating != null) {
+            // Round to one decimal place
+            this.averageRating = Math.round(averageRating * 10) / 10.0;
+        } else {
+            this.averageRating = null;
+        }
+    }
 }
