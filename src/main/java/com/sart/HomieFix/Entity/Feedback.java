@@ -13,9 +13,15 @@ public class Feedback {
     @JoinColumn(name = "user_id", nullable = false)
     private UserProfile userProfile;
 
+    @ManyToOne
+    @JoinColumn(name = "worker_id", nullable = false)
+    private Worker worker;
+
     private Long bookingId;
     private int rating; // Rating scale (1-5)
     private String comment;
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -31,6 +37,14 @@ public class Feedback {
 
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
+    }
+
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 
     public Long getBookingId() {

@@ -34,13 +34,24 @@ public class Worker {
 	@Column(name = "joining_date")
 	private LocalDate joiningDate;
 
+	@Column(name = "average_rating")
+	private Double averageRating;
+
+	// Getters and Setters
+
 	public Worker() {
-	} // No-args constructor (required by JPA)
+
+	}
+
+	public Long getId() {
+		return id;
+	}
 
 	public Worker(Long id, String name, String role, String profilePicUrl, String email, String contactNumber,
 			String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender, String houseNumber,
 			String town, String pincode, String nearbyLandmark, String district, String state, String aadharNumber,
-			String drivingLicenseNumber, LocalDate joiningDate) {
+			String drivingLicenseNumber, LocalDate joiningDate, Double averageRating) {
+
 		this.id = id;
 		this.name = name;
 		this.role = role;
@@ -60,12 +71,7 @@ public class Worker {
 		this.aadharNumber = aadharNumber;
 		this.drivingLicenseNumber = drivingLicenseNumber;
 		this.joiningDate = joiningDate;
-	}
-
-	// Getters and Setters (for ALL fields)
-
-	public Long getId() {
-		return id;
+		this.averageRating = averageRating;
 	}
 
 	public void setId(Long id) {
@@ -214,5 +220,13 @@ public class Worker {
 
 	public void setJoiningDate(LocalDate joiningDate) {
 		this.joiningDate = joiningDate;
+	}
+
+	public Double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(Double averageRating) {
+		this.averageRating = averageRating;
 	}
 }

@@ -23,12 +23,13 @@ public class FeedbackController {
     @PostMapping("/submit")
     public ResponseEntity<?> submitFeedback(
             @RequestParam Long userId,
+            @RequestParam Long workerId,
             @RequestParam Long bookingId,
             @RequestParam int rating,
             @RequestParam String comment) {
         try {
-            logger.info("Submitting feedback - UserID: {}, BookingID: {}, Rating: {}, Comment: {}", userId, bookingId, rating, comment);
-            Feedback feedback = feedbackService.submitFeedback(userId, bookingId, rating, comment);
+            logger.info("Submitting feedback - UserID: {}, WorkerID: {}, BookingID: {}, Rating: {}, Comment: {}", userId, workerId, bookingId, rating, comment);
+            Feedback feedback = feedbackService.submitFeedback(userId, workerId, bookingId, rating, comment);
             return ResponseEntity.ok(feedback);
         } catch (Exception e) {
             logger.error("Error submitting feedback: {}", e.getMessage());
