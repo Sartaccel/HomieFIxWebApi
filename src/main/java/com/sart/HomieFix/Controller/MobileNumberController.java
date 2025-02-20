@@ -43,12 +43,12 @@ public class MobileNumberController {
         try {
             String response = otpService.validateOtp(mobileNumber, otp);
 
-            if ("OTP Verified Successfully".equals(response)) {
+            if ("OTP Verified Successfully".equals(response) || response.startsWith("Mobile number ")) { // Check for both success messages
                 logger.info("OTP verified successfully for {}", mobileNumber);
-                return ResponseEntity.ok(response);
+                return ResponseEntity.ok(response); // Return 200 OK
             } else {
                 logger.warn("Invalid OTP for {}", mobileNumber);
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid OTP or mobileNumber");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid OTP or mobileNumber"); // Return 401
             }
         } catch (Exception e) {
             logger.error("Error verifying OTP for {}: {}", mobileNumber, e.getMessage());
