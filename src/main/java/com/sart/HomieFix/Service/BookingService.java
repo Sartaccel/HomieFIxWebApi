@@ -37,7 +37,7 @@ public class BookingService {
     private WorkerRepository workerRepository;
 
     @Autowired
-    private MobileNumberRepository mobileNumberRepository; // Autowire MobileNumberRepository
+    private MobileNumberRepository mobileNumberRepository;
 
 
     public List<String> getAvailableDates() {
@@ -135,7 +135,7 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
-    public Booking assignWorkerToBooking(Long bookingId, Long workerId) {
+    public Booking assignWorkerToBooking(Long bookingId, Long workerId, String notes) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
 
@@ -144,6 +144,7 @@ public class BookingService {
 
         booking.setWorker(worker);
         booking.setBookingStatus("ASSIGNED");
+        booking.setNotes(notes);
 
         return bookingRepository.save(booking);
     }

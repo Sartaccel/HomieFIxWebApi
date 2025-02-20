@@ -13,7 +13,7 @@ public class EmailService {
 
     public void sendVerificationEmail(String toEmail, String token) {
         String subject = "Email Verification";
-        String body = "Click the link to verify your email: http://localhost:1111/profile/verify?token=" + token;
+        String body = "Click the link to verify your email: http://homiefix.in:1111/profile/verify?token=" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toEmail);

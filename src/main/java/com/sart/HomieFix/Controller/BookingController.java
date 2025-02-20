@@ -75,7 +75,7 @@ public class BookingController {
     public ResponseEntity<?> updateBookingStatus(@PathVariable Long bookingId, @RequestParam String status) {
         logger.info("Updating booking status. Booking ID: {}, New Status: {}", bookingId, status);
         try {
-            List<String> validStatuses = List.of("PENDING", "COMPLETED","STARTED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
+            List<String> validStatuses = List.of("PENDING", "COMPLETED","STARTED"); // Include CANCELLED and ASSIGNED
             if (!validStatuses.contains(status.toUpperCase())) {
                 logger.warn("Invalid status provided: {}", status);
                 return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED, CANCELLED, ASSIGNED.");
@@ -90,10 +90,10 @@ public class BookingController {
     }
 
     @PutMapping("/assign-worker/{bookingId}")
-    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId) {
+    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId, @RequestParam(required = false) String notes) {
         logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
         try {
-            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId);
+            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId,notes);
             logger.info("Worker assigned successfully to Booking ID: {}", bookingId);
             return ResponseEntity.ok(updatedBooking);
         } catch (Exception e) {

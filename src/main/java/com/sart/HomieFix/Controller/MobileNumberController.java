@@ -42,13 +42,20 @@ public class MobileNumberController {
         logger.info("Received request to verify OTP for mobile number: {}", mobileNumber);
         try {
             String response = otpService.validateOtp(mobileNumber, otp);
-            logger.info("OTP verification result for {}: {}", mobileNumber, response);
-            return ResponseEntity.ok(response);
+
+            if ("OTP Verified Successfully".equals(response)) {
+                logger.info("OTP verified successfully for {}", mobileNumber);
+                return ResponseEntity.ok(response);
+            } else {
+                logger.warn("Invalid OTP for {}", mobileNumber);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid OTP or mobileNumber");
+            }
         } catch (Exception e) {
             logger.error("Error verifying OTP for {}: {}", mobileNumber, e.getMessage());
-            return ResponseEntity.badRequest().body("Error verifying OTP: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error verifying OTP: " + e.getMessage());
         }
     }
+
 
     @GetMapping("/getFirstLoginDate")
     public ResponseEntity<?> getFirstLoginDate(@RequestParam String mobileNumber) {

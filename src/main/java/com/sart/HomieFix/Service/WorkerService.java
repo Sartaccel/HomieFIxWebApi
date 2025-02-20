@@ -28,7 +28,7 @@ public class WorkerService {
 
 		Worker worker = new Worker(null, name, role, imageUrl, email, contactNumber, eContactNumber, workExperience,
 				dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark, district, state, aadharNumber,
-				drivingLicenseNumber, joiningDate);
+				drivingLicenseNumber, joiningDate, null);
 		return workerRepository.save(worker);
 	}
 
