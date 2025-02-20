@@ -167,4 +167,13 @@ public class BookingService {
                 .orElseThrow(() -> new RuntimeException("UserProfile not found"));
         return bookingRepository.findByUserProfile(userProfile);
     }
+    
+    // Update only the notes
+    public Booking updateBookingNotes(Long bookingId, String notes) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        booking.setNotes(notes); 
+        return bookingRepository.save(booking);
+    }
 }

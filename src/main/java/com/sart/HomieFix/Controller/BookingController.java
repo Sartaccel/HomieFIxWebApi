@@ -161,4 +161,17 @@ public class BookingController {
             return ResponseEntity.badRequest().body("Error fetching user bookings: " + e.getMessage());
         }
     }
+    
+    @PatchMapping("/update-notes/{bookingId}") // Use PATCH for partial updates
+    public ResponseEntity<?> updateBookingNotes(@PathVariable Long bookingId, @RequestParam String notes) {
+        logger.info("Updating booking notes. Booking ID: {}, New Notes: {}", bookingId, notes);
+        try {
+            Booking updatedBooking = bookingService.updateBookingNotes(bookingId, notes);
+            logger.info("Booking notes updated successfully for Booking ID: {}", bookingId);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            logger.error("Error updating booking notes for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error updating booking notes: " + e.getMessage());
+        }
+    }
 }
