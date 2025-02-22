@@ -75,7 +75,7 @@ public class BookingController {
     public ResponseEntity<?> updateBookingStatus(@PathVariable Long bookingId, @RequestParam String status) {
         logger.info("Updating booking status. Booking ID: {}, New Status: {}", bookingId, status);
         try {
-            List<String> validStatuses = List.of("PENDING", "COMPLETED", "CANCELLED", "ASSIGNED"); // Include CANCELLED and ASSIGNED
+            List<String> validStatuses = List.of("PENDING", "COMPLETED","STARTED"); // Include CANCELLED and ASSIGNED
             if (!validStatuses.contains(status.toUpperCase())) {
                 logger.warn("Invalid status provided: {}", status);
                 return ResponseEntity.badRequest().body("Invalid status. Allowed values: PENDING, COMPLETED, CANCELLED, ASSIGNED.");
@@ -90,10 +90,10 @@ public class BookingController {
     }
 
     @PutMapping("/assign-worker/{bookingId}")
-    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId) {
+    public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId, @RequestParam(required = false) String notes) {
         logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
         try {
-            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId);
+            Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId,notes);
             logger.info("Worker assigned successfully to Booking ID: {}", bookingId);
             return ResponseEntity.ok(updatedBooking);
         } catch (Exception e) {
@@ -112,6 +112,27 @@ public class BookingController {
         } catch (Exception e) {
             logger.error("Error canceling booking for Booking ID {}: {}", bookingId, e.getMessage());
             return ResponseEntity.badRequest().body("Error canceling booking: " + e.getMessage());
+        }
+    }
+    
+    @PutMapping("/reschedule/{bookingId}")
+    public ResponseEntity<?> rescheduleBooking(
+            @PathVariable Long bookingId,
+            @RequestParam String selectedDate,
+            @RequestParam String selectedTimeSlot,
+            @RequestParam String rescheduleReason) { // Add rescheduleReason parameter
+
+        logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}, Reason: {}",
+                bookingId, selectedDate, selectedTimeSlot, rescheduleReason);
+
+        try {
+            LocalDate bookedDate = LocalDate.parse(selectedDate, dateFormatter);
+            Booking rescheduledBooking = bookingService.rescheduleBooking(bookingId, bookedDate, selectedTimeSlot, rescheduleReason);
+            logger.info("Booking rescheduled successfully. Booking ID: {}", bookingId);
+            return ResponseEntity.ok(rescheduledBooking);
+        } catch (Exception e) {
+            logger.error("Error rescheduling booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error rescheduling booking: " + e.getMessage());
         }
     }
 
@@ -138,6 +159,32 @@ public class BookingController {
         } catch (Exception e) {
             logger.error("Error fetching user bookings for User ID {}: {}", userProfileId, e.getMessage());
             return ResponseEntity.badRequest().body("Error fetching user bookings: " + e.getMessage());
+        }
+    }
+    
+    @PatchMapping("/update-notes/{bookingId}") // Use PATCH for partial updates
+    public ResponseEntity<?> updateBookingNotes(@PathVariable Long bookingId, @RequestParam String notes) {
+        logger.info("Updating booking notes. Booking ID: {}, New Notes: {}", bookingId, notes);
+        try {
+            Booking updatedBooking = bookingService.updateBookingNotes(bookingId, notes);
+            logger.info("Booking notes updated successfully for Booking ID: {}", bookingId);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            logger.error("Error updating booking notes for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error updating booking notes: " + e.getMessage());
+        }
+    }
+    
+    @PutMapping("/remove-worker/{bookingId}")
+    public ResponseEntity<?> removeWorkerFromBooking(@PathVariable Long bookingId) {
+        logger.info("Removing worker from booking. Booking ID: {}", bookingId);
+        try {
+            Booking updatedBooking = bookingService.removeWorkerFromBooking(bookingId);
+            logger.info("Worker removed successfully from Booking ID: {}", bookingId);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            logger.error("Error removing worker from booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error removing worker from booking: " + e.getMessage());
         }
     }
 }

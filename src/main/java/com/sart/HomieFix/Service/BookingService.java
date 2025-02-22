@@ -37,7 +37,7 @@ public class BookingService {
     private WorkerRepository workerRepository;
 
     @Autowired
-    private MobileNumberRepository mobileNumberRepository; // Autowire MobileNumberRepository
+    private MobileNumberRepository mobileNumberRepository;
 
 
     public List<String> getAvailableDates() {
@@ -105,6 +105,23 @@ public class BookingService {
         cartRepository.deleteAll(cartItems);
         return booking;
     }
+    
+    public Booking rescheduleBooking(Long bookingId, LocalDate bookedDate, String timeSlot, String rescheduleReason) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Check if bookedDate or timeSlot has changed
+        if (!booking.getBookedDate().equals(bookedDate) || !booking.getTimeSlot().equals(timeSlot)) {
+            booking.setBookedDate(bookedDate);
+            booking.setTimeSlot(timeSlot);
+            booking.setBookingStatus("RESCHEDULED"); // Update status to RESCHEDULED
+            booking.setRescheduleReason(rescheduleReason); // Set the reschedule reason
+        } else {
+            throw new RuntimeException("New date and time are the same as the existing ones.");
+        }
+
+        return bookingRepository.save(booking);
+    }
 
     public Booking updateBookingStatus(Long bookingId, String status) {
         Booking booking = bookingRepository.findById(bookingId)
@@ -118,7 +135,7 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
-    public Booking assignWorkerToBooking(Long bookingId, Long workerId) {
+    public Booking assignWorkerToBooking(Long bookingId, Long workerId, String notes) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
 
@@ -127,6 +144,7 @@ public class BookingService {
 
         booking.setWorker(worker);
         booking.setBookingStatus("ASSIGNED");
+        booking.setNotes(notes);
 
         return bookingRepository.save(booking);
     }
@@ -148,5 +166,30 @@ public class BookingService {
         UserProfile userProfile = userProfileRepository.findById(userProfileId)
                 .orElseThrow(() -> new RuntimeException("UserProfile not found"));
         return bookingRepository.findByUserProfile(userProfile);
+    }
+    
+    // Update only the notes
+    public Booking updateBookingNotes(Long bookingId, String notes) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        booking.setNotes(notes); 
+        return bookingRepository.save(booking);
+    }
+    
+    public Booking removeWorkerFromBooking(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Check if the booking has an assigned worker
+        if (booking.getWorker() == null) {
+            throw new RuntimeException("No worker assigned to this booking.");
+        }
+
+        // Remove the worker and set status to PENDING
+        booking.setWorker(null);
+        booking.setBookingStatus("PENDING");
+
+        return bookingRepository.save(booking);
     }
 }
