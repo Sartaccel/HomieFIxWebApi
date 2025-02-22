@@ -176,4 +176,20 @@ public class BookingService {
         booking.setNotes(notes); 
         return bookingRepository.save(booking);
     }
+    
+    public Booking removeWorkerFromBooking(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Check if the booking has an assigned worker
+        if (booking.getWorker() == null) {
+            throw new RuntimeException("No worker assigned to this booking.");
+        }
+
+        // Remove the worker and set status to PENDING
+        booking.setWorker(null);
+        booking.setBookingStatus("PENDING");
+
+        return bookingRepository.save(booking);
+    }
 }

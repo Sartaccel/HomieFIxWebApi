@@ -174,4 +174,17 @@ public class BookingController {
             return ResponseEntity.badRequest().body("Error updating booking notes: " + e.getMessage());
         }
     }
+    
+    @PutMapping("/remove-worker/{bookingId}")
+    public ResponseEntity<?> removeWorkerFromBooking(@PathVariable Long bookingId) {
+        logger.info("Removing worker from booking. Booking ID: {}", bookingId);
+        try {
+            Booking updatedBooking = bookingService.removeWorkerFromBooking(bookingId);
+            logger.info("Worker removed successfully from Booking ID: {}", bookingId);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            logger.error("Error removing worker from booking for Booking ID {}: {}", bookingId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error removing worker from booking: " + e.getMessage());
+        }
+    }
 }
