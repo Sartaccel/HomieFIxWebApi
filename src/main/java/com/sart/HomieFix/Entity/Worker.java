@@ -12,6 +12,9 @@ public class Worker {
 
 	private String name;
 	private String role;
+	private String specification;
+	
+
 	private String profilePicUrl;
 	private String email;
 	private String contactNumber;
@@ -47,7 +50,7 @@ public class Worker {
 		return id;
 	}
 
-	public Worker(Long id, String name, String role, String profilePicUrl, String email, String contactNumber,
+	public Worker(Long id, String name, String role,String specification, String profilePicUrl, String email, String contactNumber,
 			String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender, String houseNumber,
 			String town, String pincode, String nearbyLandmark, String district, String state, String aadharNumber,
 			String drivingLicenseNumber, LocalDate joiningDate, Double averageRating) {
@@ -55,6 +58,7 @@ public class Worker {
 		this.id = id;
 		this.name = name;
 		this.role = role;
+		this.specification=specification;
 		this.profilePicUrl = profilePicUrl;
 		this.email = email;
 		this.contactNumber = contactNumber;
@@ -92,6 +96,14 @@ public class Worker {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public String getSpecification() {
+		return specification;
+	}
+
+	public void setSpecification(String specification) {
+		this.specification = specification;
 	}
 
 	public String getProfilePicUrl() {

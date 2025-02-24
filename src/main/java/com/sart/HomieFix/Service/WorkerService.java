@@ -19,14 +19,14 @@ public class WorkerService {
 	@Autowired
 	private CloudinaryService cloudinaryService;
 
-	public Worker saveWorker(String name, String role, MultipartFile profilePic, String email, String contactNumber,
+	public Worker saveWorker(String name, String role,String specification , MultipartFile profilePic, String email, String contactNumber,
 			String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender, String houseNumber,
 			String town, String pincode, String nearbyLandmark, String district, String state, String aadharNumber,
 			String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 
 		String imageUrl = cloudinaryService.uploadFile(profilePic);
 
-		Worker worker = new Worker(null, name, role, imageUrl, email, contactNumber, eContactNumber, workExperience,
+		Worker worker = new Worker(null, name, role,specification, imageUrl, email, contactNumber, eContactNumber, workExperience,
 				dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark, district, state, aadharNumber,
 				drivingLicenseNumber, joiningDate, null);
 		return workerRepository.save(worker);
@@ -40,7 +40,7 @@ public class WorkerService {
 		return workerRepository.findById(id).orElse(null);
 	}
 
-	public Worker updateWorker(Long id, String name, String role, MultipartFile profilePic, String email,
+	public Worker updateWorker(Long id, String name, String role,String specification, MultipartFile profilePic, String email,
 			String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender,
 			String houseNumber, String town, String pincode, String nearbyLandmark, String district, String state,
 			String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
@@ -51,6 +51,8 @@ public class WorkerService {
 			existingWorker.setName(name);
 		if (role != null && !role.isEmpty())
 			existingWorker.setRole(role);
+		if (specification != null && !specification.isEmpty())
+			existingWorker.setRole(specification);
 		if (profilePic != null && !profilePic.isEmpty()) {
 			String imageUrl = cloudinaryService.uploadFile(profilePic);
 			existingWorker.setProfilePicUrl(imageUrl);
