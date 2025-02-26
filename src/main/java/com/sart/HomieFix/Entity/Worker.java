@@ -13,8 +13,6 @@ public class Worker {
 	private String name;
 	private String role;
 	private String specification;
-	
-
 	private String profilePicUrl;
 	private String email;
 	private String contactNumber;
