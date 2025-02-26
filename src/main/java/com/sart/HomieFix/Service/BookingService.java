@@ -167,6 +167,11 @@ public class BookingService {
 		return bookingRepository.findByUserProfile(userProfile);
 	}
 
+	public Booking getBookingById(Long bookingId) {
+		Optional<Booking> booking = bookingRepository.findById(bookingId);
+		return booking.orElseThrow(() -> new RuntimeException("Booking not found"));
+	}
+
 	// Update only the notes
 	public Booking updateBookingNotes(Long bookingId, String notes) {
 		Booking booking = bookingRepository.findById(bookingId)
@@ -177,23 +182,23 @@ public class BookingService {
 	}
 
 	public Booking removeWorkerFromBooking(Long bookingId) {
-	    Booking booking = bookingRepository.findById(bookingId)
-	            .orElseThrow(() -> new RuntimeException("Booking not found"));
+		Booking booking = bookingRepository.findById(bookingId)
+				.orElseThrow(() -> new RuntimeException("Booking not found"));
 
-	    // Check if the booking has an assigned worker
-	    if (booking.getWorker() == null) {
-	        throw new RuntimeException("No worker assigned to this booking.");
-	    }
+		// Check if the booking has an assigned worker
+		if (booking.getWorker() == null) {
+			throw new RuntimeException("No worker assigned to this booking.");
+		}
 
-	    // Decrement the total work assigned counter
-	    Worker worker = booking.getWorker();
-	    worker.setTotalWorkAssigned(worker.getTotalWorkAssigned() - 1);
-	    workerRepository.save(worker); // Save the updated worker
+		// Decrement the total work assigned counter
+		Worker worker = booking.getWorker();
+		worker.setTotalWorkAssigned(worker.getTotalWorkAssigned() - 1);
+		workerRepository.save(worker); // Save the updated worker
 
-	    // Remove the worker and set status to PENDING
-	    booking.setWorker(null);
-	    booking.setBookingStatus("PENDING");
+		// Remove the worker and set status to PENDING
+		booking.setWorker(null);
+		booking.setBookingStatus("PENDING");
 
-	    return bookingRepository.save(booking);
+		return bookingRepository.save(booking);
 	}
 }
