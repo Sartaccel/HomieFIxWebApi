@@ -27,7 +27,7 @@ public class WorkerController {
 	public ResponseEntity<Worker> addWorker(@RequestParam String name, @RequestParam String role,
 			@RequestParam String specification, @RequestParam MultipartFile profilePic, @RequestParam String email,
 			@RequestParam String contactNumber, @RequestParam String eContactNumber,
-			@RequestParam Integer workExperience,
+			@RequestParam Integer workExperience, @RequestParam String language,
 			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
 			@RequestParam String gender, @RequestParam String houseNumber, @RequestParam String town,
 			@RequestParam String pincode, @RequestParam String nearbyLandmark, @RequestParam String district,
@@ -38,8 +38,8 @@ public class WorkerController {
 
 		try {
 			Worker savedWorker = workerService.saveWorker(name, role, specification, profilePic, email, contactNumber,
-					eContactNumber, workExperience, dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark,
-					district, state, aadharNumber, drivingLicenseNumber, joiningDate);
+					eContactNumber, workExperience, language, dateOfBirth, gender, houseNumber, town, pincode,
+					nearbyLandmark, district, state, aadharNumber, drivingLicenseNumber, joiningDate);
 			logger.info("Worker added successfully: {}", savedWorker.getId()); // Log the ID after successful save
 			return ResponseEntity.ok(savedWorker);
 		} catch (IOException e) {

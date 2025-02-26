@@ -18,6 +18,7 @@ public class Worker {
 	private String contactNumber;
 	private String eContactNumber;
 	private Integer workExperience;
+	private String language;
 
 	@Column(name = "date_of_birth")
 	private LocalDate dateOfBirth;
@@ -38,6 +39,9 @@ public class Worker {
 	@Column(name = "average_rating")
 	private Double averageRating;
 
+	@Column(name = "total_work_assigned")
+	private Integer totalWorkAssigned = 0;
+
 	// Getters and Setters
 
 	public Worker() {
@@ -48,20 +52,22 @@ public class Worker {
 		return id;
 	}
 
-	public Worker(Long id, String name, String role,String specification, String profilePicUrl, String email, String contactNumber,
-			String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender, String houseNumber,
-			String town, String pincode, String nearbyLandmark, String district, String state, String aadharNumber,
-			String drivingLicenseNumber, LocalDate joiningDate, Double averageRating) {
+	public Worker(Long id, String name, String role, String specification, String profilePicUrl, String email,
+			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate, Double averageRating,
+			Integer totalWorkAssigned) {
 
 		this.id = id;
 		this.name = name;
 		this.role = role;
-		this.specification=specification;
+		this.specification = specification;
 		this.profilePicUrl = profilePicUrl;
 		this.email = email;
 		this.contactNumber = contactNumber;
 		this.eContactNumber = eContactNumber;
 		this.workExperience = workExperience;
+		this.language = language;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.houseNumber = houseNumber;
@@ -74,6 +80,7 @@ public class Worker {
 		this.drivingLicenseNumber = drivingLicenseNumber;
 		this.joiningDate = joiningDate;
 		this.averageRating = averageRating;
+		this.totalWorkAssigned = totalWorkAssigned;
 	}
 
 	public void setId(Long id) {
@@ -95,7 +102,7 @@ public class Worker {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public String getSpecification() {
 		return specification;
 	}
@@ -142,6 +149,14 @@ public class Worker {
 
 	public void setWorkExperience(Integer workExperience) {
 		this.workExperience = workExperience;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -237,11 +252,19 @@ public class Worker {
 	}
 
 	public void setAverageRating(Double averageRating) {
-        if (averageRating != null) {
-            // Round to one decimal place
-            this.averageRating = Math.round(averageRating * 10) / 10.0;
-        } else {
-            this.averageRating = null;
-        }
-    }
+		if (averageRating != null) {
+			// Round to one decimal place
+			this.averageRating = Math.round(averageRating * 10) / 10.0;
+		} else {
+			this.averageRating = null;
+		}
+	}
+
+	public Integer getTotalWorkAssigned() {
+		return totalWorkAssigned;
+	}
+
+	public void setTotalWorkAssigned(Integer totalWorkAssigned) {
+		this.totalWorkAssigned = totalWorkAssigned;
+	}
 }
