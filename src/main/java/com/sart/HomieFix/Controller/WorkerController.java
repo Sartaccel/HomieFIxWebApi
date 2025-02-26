@@ -37,9 +37,9 @@ public class WorkerController {
 		logger.info("Adding new worker: {}", name); // Log the worker's name
 
 		try {
-			Worker savedWorker = workerService.saveWorker(name, role,specification, profilePic, email, contactNumber, eContactNumber,
-					workExperience, dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark, district, state,
-					aadharNumber, drivingLicenseNumber, joiningDate);
+			Worker savedWorker = workerService.saveWorker(name, role, specification, profilePic, email, contactNumber,
+					eContactNumber, workExperience, dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark,
+					district, state, aadharNumber, drivingLicenseNumber, joiningDate);
 			logger.info("Worker added successfully: {}", savedWorker.getId()); // Log the ID after successful save
 			return ResponseEntity.ok(savedWorker);
 		} catch (IOException e) {
@@ -84,9 +84,9 @@ public class WorkerController {
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Worker> updateWorker(@PathVariable Long id, @RequestParam(required = false) String name,
-			@RequestParam(required = false) String role,@RequestParam String specification, @RequestParam(required = false) MultipartFile profilePic,
-			@RequestParam(required = false) String email, @RequestParam(required = false) String contactNumber,
-			@RequestParam(required = false) String eContactNumber,
+			@RequestParam(required = false) String role, @RequestParam String specification,
+			@RequestParam(required = false) MultipartFile profilePic, @RequestParam(required = false) String email,
+			@RequestParam(required = false) String contactNumber, @RequestParam(required = false) String eContactNumber,
 			@RequestParam(required = false) Integer workExperience,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
 			@RequestParam(required = false) String gender, @RequestParam(required = false) String houseNumber,
@@ -97,9 +97,9 @@ public class WorkerController {
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
 		logger.info("Updating worker with ID: {}", id);
 		try {
-			Worker updatedWorker = workerService.updateWorker(id, name, role,specification, profilePic, email, contactNumber,
-					eContactNumber, workExperience, dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark,
-					district, state, aadharNumber, drivingLicenseNumber, joiningDate);
+			Worker updatedWorker = workerService.updateWorker(id, name, role, specification, profilePic, email,
+					contactNumber, eContactNumber, workExperience, dateOfBirth, gender, houseNumber, town, pincode,
+					nearbyLandmark, district, state, aadharNumber, drivingLicenseNumber, joiningDate);
 			logger.info("Worker updated successfully: {}", id);
 			return ResponseEntity.ok(updatedWorker);
 		} catch (IOException e) {
