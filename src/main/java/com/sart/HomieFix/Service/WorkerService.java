@@ -19,16 +19,16 @@ public class WorkerService {
 	@Autowired
 	private CloudinaryService cloudinaryService;
 
-	public Worker saveWorker(String name, String role, MultipartFile profilePic, String email, String contactNumber,
-			String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender, String houseNumber,
-			String town, String pincode, String nearbyLandmark, String district, String state, String aadharNumber,
-			String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+	public Worker saveWorker(String name, String role, String specification, MultipartFile profilePic, String email,
+			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 
 		String imageUrl = cloudinaryService.uploadFile(profilePic);
 
-		Worker worker = new Worker(null, name, role, imageUrl, email, contactNumber, eContactNumber, workExperience,
-				dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark, district, state, aadharNumber,
-				drivingLicenseNumber, joiningDate, null);
+		Worker worker = new Worker(null, name, role, specification, imageUrl, email, contactNumber, eContactNumber,
+				workExperience, language, dateOfBirth, gender, houseNumber, town, pincode, nearbyLandmark, district,
+				state, aadharNumber, drivingLicenseNumber, joiningDate, null, 0);
 		return workerRepository.save(worker);
 	}
 
@@ -40,10 +40,10 @@ public class WorkerService {
 		return workerRepository.findById(id).orElse(null);
 	}
 
-	public Worker updateWorker(Long id, String name, String role, MultipartFile profilePic, String email,
-			String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth, String gender,
-			String houseNumber, String town, String pincode, String nearbyLandmark, String district, String state,
-			String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+	public Worker updateWorker(Long id, String name, String role, String specification, MultipartFile profilePic,
+			String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 		Worker existingWorker = workerRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Worker not found with id: " + id));
 
@@ -51,6 +51,8 @@ public class WorkerService {
 			existingWorker.setName(name);
 		if (role != null && !role.isEmpty())
 			existingWorker.setRole(role);
+		if (specification != null && !specification.isEmpty())
+			existingWorker.setSpecification(specification); // Fixed: Changed from setRole to setSpecification
 		if (profilePic != null && !profilePic.isEmpty()) {
 			String imageUrl = cloudinaryService.uploadFile(profilePic);
 			existingWorker.setProfilePicUrl(imageUrl);

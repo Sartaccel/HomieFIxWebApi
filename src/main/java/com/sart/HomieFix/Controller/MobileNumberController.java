@@ -43,7 +43,7 @@ public class MobileNumberController {
         try {
             String response = otpService.validateOtp(mobileNumber, otp);
 
-            if ("OTP Verified Successfully".equals(response)) {
+            if ("OTP Verified Successfully".equals(response) || response.startsWith("Mobile number ")) {
                 logger.info("OTP verified successfully for {}", mobileNumber);
                 return ResponseEntity.ok(response);
             } else {
@@ -61,10 +61,10 @@ public class MobileNumberController {
     public ResponseEntity<?> getFirstLoginDate(@RequestParam String mobileNumber) {
         logger.info("Fetching first login date for mobile number: {}", mobileNumber);
         try {
-            Optional<MobileNumber> mobile = mobileNumberRepository.findByMobileNumber(mobileNumber); // Correct type
+            Optional<MobileNumber> mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
 
-            if (mobile.isPresent()) { // Simplified check
-                MobileNumber mobileNumberEntity = mobile.get(); // Get the MobileNumber entity
+            if (mobile.isPresent()) {
+                MobileNumber mobileNumberEntity = mobile.get();
                 if (mobileNumberEntity.getFirstLoginDate() != null) {
                     String firstLoginDate = mobileNumberEntity.getFirstLoginDate().toString();
                     logger.info("First login date for mobile number {}: {}", mobileNumber, firstLoginDate);
