@@ -57,7 +57,7 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of("http://localhost:5173")); // Allow frontend origin
         config.setAllowedHeaders(List.of("*")); // Allow all headers
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow specific HTTP methods
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","PATCH","OPTIONS")); // Allow specific HTTP methods
         config.setExposedHeaders(List.of("Authorization")); // Allow frontend to access Authorization header
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
