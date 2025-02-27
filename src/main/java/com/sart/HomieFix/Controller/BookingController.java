@@ -166,7 +166,7 @@ public class BookingController {
 		logger.info("Fetching booking by ID: {}", bookingId);
 		try {
 			Booking booking = bookingService.getBookingById(bookingId);
-			logger.info("Booking retrieved successfully: {}", bookingId);
+			logger.info("Booking retrieved successfully: {}", booking);
 			return ResponseEntity.ok(booking);
 		} catch (Exception e) {
 			logger.error("Error fetching booking by ID {}: {}", bookingId, e.getMessage());

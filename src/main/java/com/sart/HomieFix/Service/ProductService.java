@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +27,14 @@ public class ProductService {
 
     // Update product
     public Product updateProduct(Product product) {
-        return productRepository.save(product);
+        // Ensure the product exists before updating
+        Optional<Product> existingProduct = productRepository.findById(product.getId());
+        if (existingProduct.isPresent()) {
+            return productRepository.save(product);
+        } else {
+            // Handle the case where the product doesn't exist (e.g., throw an exception)
+            return null; // Or throw a custom exception
+        }
     }
 
     // Delete product
