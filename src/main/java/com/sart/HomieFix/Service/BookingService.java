@@ -55,7 +55,7 @@ public class BookingService {
 	}
 
 	public Booking createBooking(Long userProfileId, Long addressId, LocalDate bookedDate, String timeSlot,
-			String couponCode) {
+								 String couponCode) {
 		UserProfile userProfile = userProfileRepository.findById(userProfileId)
 				.orElseThrow(() -> new RuntimeException("UserProfile not found"));
 

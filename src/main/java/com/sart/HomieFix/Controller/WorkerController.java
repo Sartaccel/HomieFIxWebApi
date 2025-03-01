@@ -25,14 +25,14 @@ public class WorkerController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Worker> addWorker(@RequestParam String name, @RequestParam String role,
-			@RequestParam String specification, @RequestParam MultipartFile profilePic, @RequestParam String email,
-			@RequestParam String contactNumber, @RequestParam String eContactNumber,
-			@RequestParam Integer workExperience, @RequestParam String language,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
-			@RequestParam String gender, @RequestParam String houseNumber, @RequestParam String town,
-			@RequestParam String pincode, @RequestParam String nearbyLandmark, @RequestParam String district,
-			@RequestParam String state, @RequestParam String aadharNumber, @RequestParam String drivingLicenseNumber,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
+											@RequestParam String specification, @RequestParam MultipartFile profilePic, @RequestParam String email,
+											@RequestParam String contactNumber, @RequestParam String eContactNumber,
+											@RequestParam Integer workExperience, @RequestParam String language,
+											@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
+											@RequestParam String gender, @RequestParam String houseNumber, @RequestParam String town,
+											@RequestParam String pincode, @RequestParam String nearbyLandmark, @RequestParam String district,
+											@RequestParam String state, @RequestParam String aadharNumber, @RequestParam String drivingLicenseNumber,
+											@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
 
 		logger.info("Adding new worker: {}", name); // Log the worker's name
 
@@ -84,17 +84,17 @@ public class WorkerController {
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Worker> updateWorker(@PathVariable Long id, @RequestParam(required = false) String name,
-			@RequestParam(required = false) String role, @RequestParam String specification,
-			@RequestParam(required = false) MultipartFile profilePic, @RequestParam(required = false) String email,
-			@RequestParam(required = false) String contactNumber, @RequestParam(required = false) String eContactNumber,
-			@RequestParam(required = false) Integer workExperience,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
-			@RequestParam(required = false) String gender, @RequestParam(required = false) String houseNumber,
-			@RequestParam(required = false) String town, @RequestParam(required = false) String pincode,
-			@RequestParam(required = false) String nearbyLandmark, @RequestParam(required = false) String district,
-			@RequestParam(required = false) String state, @RequestParam(required = false) String aadharNumber,
-			@RequestParam(required = false) String drivingLicenseNumber,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
+											   @RequestParam(required = false) String role, @RequestParam String specification,
+											   @RequestParam(required = false) MultipartFile profilePic, @RequestParam(required = false) String email,
+											   @RequestParam(required = false) String contactNumber, @RequestParam(required = false) String eContactNumber,
+											   @RequestParam(required = false) Integer workExperience,
+											   @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
+											   @RequestParam(required = false) String gender, @RequestParam(required = false) String houseNumber,
+											   @RequestParam(required = false) String town, @RequestParam(required = false) String pincode,
+											   @RequestParam(required = false) String nearbyLandmark, @RequestParam(required = false) String district,
+											   @RequestParam(required = false) String state, @RequestParam(required = false) String aadharNumber,
+											   @RequestParam(required = false) String drivingLicenseNumber,
+											   @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
 		logger.info("Updating worker with ID: {}", id);
 		try {
 			Worker updatedWorker = workerService.updateWorker(id, name, role, specification, profilePic, email,

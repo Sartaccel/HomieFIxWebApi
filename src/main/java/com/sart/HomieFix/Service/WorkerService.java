@@ -20,9 +20,9 @@ public class WorkerService {
 	private CloudinaryService cloudinaryService;
 
 	public Worker saveWorker(String name, String role, String specification, MultipartFile profilePic, String email,
-			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
-			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+							 String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+							 String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+							 String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 
 		String imageUrl = cloudinaryService.uploadFile(profilePic);
 
@@ -41,9 +41,9 @@ public class WorkerService {
 	}
 
 	public Worker updateWorker(Long id, String name, String role, String specification, MultipartFile profilePic,
-			String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
-			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+							   String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
+							   String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+							   String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 		Worker existingWorker = workerRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Worker not found with id: " + id));
 

@@ -130,7 +130,7 @@ public class Booking {
     public void setBookingStatus(String bookingStatus) {
         this.bookingStatus = bookingStatus;
     }
-    
+
     public String getNotes() {
         return notes;
     }
@@ -146,7 +146,7 @@ public class Booking {
     public void setCancelReason(String cancelReason) {
         this.cancelReason = cancelReason;
     }
-    
+
     public String getRescheduleReason() {
         return rescheduleReason;
     }

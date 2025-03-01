@@ -53,10 +53,10 @@ public class Worker {
 	}
 
 	public Worker(Long id, String name, String role, String specification, String profilePicUrl, String email,
-			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
-			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate, Double averageRating,
-			Integer totalWorkAssigned) {
+				  String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+				  String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+				  String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate, Double averageRating,
+				  Integer totalWorkAssigned) {
 
 		this.id = id;
 		this.name = name;

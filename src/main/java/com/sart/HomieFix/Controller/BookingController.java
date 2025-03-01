@@ -51,8 +51,8 @@ public class BookingController {
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createBooking(@RequestParam Long userProfileId, @RequestParam Long addressId,
-			@RequestParam String selectedDate, @RequestParam String selectedTimeSlot,
-			@RequestParam(required = false) String couponCode) {
+										   @RequestParam String selectedDate, @RequestParam String selectedTimeSlot,
+										   @RequestParam(required = false) String couponCode) {
 
 		logger.info("Creating booking for User ID: {}, Address ID: {}, Date: {}, Time Slot: {}, Coupon: {}",
 				userProfileId, addressId, selectedDate, selectedTimeSlot, couponCode);
@@ -90,7 +90,7 @@ public class BookingController {
 
 	@PutMapping("/assign-worker/{bookingId}")
 	public ResponseEntity<?> assignWorkerToBooking(@PathVariable Long bookingId, @RequestParam Long workerId,
-			@RequestParam(required = false) String notes) {
+												   @RequestParam(required = false) String notes) {
 		logger.info("Assigning worker to booking. Booking ID: {}, Worker ID: {}", bookingId, workerId);
 		try {
 			Booking updatedBooking = bookingService.assignWorkerToBooking(bookingId, workerId, notes);
@@ -117,8 +117,8 @@ public class BookingController {
 
 	@PutMapping("/reschedule/{bookingId}")
 	public ResponseEntity<?> rescheduleBooking(@PathVariable Long bookingId, @RequestParam String selectedDate,
-			@RequestParam String selectedTimeSlot, @RequestParam String rescheduleReason) { // Add rescheduleReason
-																							// parameter
+											   @RequestParam String selectedTimeSlot, @RequestParam String rescheduleReason) { // Add rescheduleReason
+		// parameter
 
 		logger.info("Rescheduling booking. Booking ID: {}, New Date: {}, New Time Slot: {}, Reason: {}", bookingId,
 				selectedDate, selectedTimeSlot, rescheduleReason);
