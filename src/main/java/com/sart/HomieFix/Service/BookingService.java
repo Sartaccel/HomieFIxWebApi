@@ -201,4 +201,10 @@ public class BookingService {
 
 		return bookingRepository.save(booking);
 	}
+	
+	public List<Booking> getBookingsByWorker(Long workerId) {
+        Worker worker = workerRepository.findById(workerId)
+                .orElseThrow(() -> new RuntimeException("Worker not found"));
+        return bookingRepository.findByWorker(worker);
+    }
 }
