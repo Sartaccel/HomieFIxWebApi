@@ -3,9 +3,11 @@ package com.sart.HomieFix.Service;
 import com.sart.HomieFix.Entity.*;
 import com.sart.HomieFix.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,9 @@ public class BookingService {
 
 	@Autowired
 	private MobileNumberRepository mobileNumberRepository;
+
+	@Autowired
+	private BookingNotificationRepository bookingNotificationRepository;
 
 	public List<String> getAvailableDates() {
 		List<String> availableDates = new ArrayList<>();
@@ -99,6 +104,10 @@ public class BookingService {
 
 		bookingRepository.save(booking);
 		cartRepository.deleteAll(cartItems);
+
+		// Add a notification for the new booking
+		BookingNotification notification = new BookingNotification(booking.getId(), "NEW_BOOKING", LocalDateTime.now());
+		bookingNotificationRepository.save(notification);
 		return booking;
 	}
 
@@ -154,6 +163,11 @@ public class BookingService {
 
 		booking.setBookingStatus("CANCELLED");
 		booking.setCancelReason(cancelReason);
+
+		// Add a notification for the cancelled booking
+		BookingNotification notification = new BookingNotification(booking.getId(), "CANCELLED_BOOKING",
+				LocalDateTime.now());
+		bookingNotificationRepository.save(notification);
 		return bookingRepository.save(booking);
 	}
 
@@ -200,5 +214,22 @@ public class BookingService {
 		booking.setBookingStatus("PENDING");
 
 		return bookingRepository.save(booking);
+	}
+
+	public List<Booking> getBookingsByWorker(Long workerId) {
+		Worker worker = workerRepository.findById(workerId).orElseThrow(() -> new RuntimeException("Worker not found"));
+		return bookingRepository.findByWorker(worker);
+	}
+
+	@Scheduled(cron = "0 0 0 * * ?") // Runs every day at midnight
+	public void cleanupOldNotifications() {
+		LocalDateTime threeDaysAgo = LocalDateTime.now().minusDays(3);
+		List<BookingNotification> oldNotifications = bookingNotificationRepository.findByCreatedAtBefore(threeDaysAgo);
+		bookingNotificationRepository.deleteAll(oldNotifications);
+	}
+
+	public List<BookingNotification> getRecentNotifications() {
+		LocalDateTime threeDaysAgo = LocalDateTime.now().minusDays(3);
+		return bookingNotificationRepository.findByCreatedAtAfter(threeDaysAgo);
 	}
 }

@@ -199,4 +199,17 @@ public class BookingController {
 			return ResponseEntity.badRequest().body("Error removing worker from booking: " + e.getMessage());
 		}
 	}
+	
+	@GetMapping("/worker/{workerId}")
+    public ResponseEntity<?> getBookingsByWorker(@PathVariable Long workerId) {
+        logger.info("Fetching bookings for Worker ID: {}", workerId);
+        try {
+            List<Booking> workerBookings = bookingService.getBookingsByWorker(workerId);
+            logger.info("Worker ID: {} has {} bookings", workerId, workerBookings.size());
+            return ResponseEntity.ok(workerBookings);
+        } catch (Exception e) {
+            logger.error("Error fetching worker bookings for Worker ID {}: {}", workerId, e.getMessage());
+            return ResponseEntity.badRequest().body("Error fetching worker bookings: " + e.getMessage());
+        }
+    }
 }
