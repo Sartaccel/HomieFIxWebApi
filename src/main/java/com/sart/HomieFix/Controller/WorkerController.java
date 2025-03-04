@@ -34,32 +34,31 @@ public class WorkerController {
 			@RequestParam String state, @RequestParam String aadharNumber, @RequestParam String drivingLicenseNumber,
 			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate joiningDate) {
 
-		logger.info("Adding new worker: {}", name); // Log the worker's name
-
+		logger.info("Adding new worker: {}", name);
 		try {
 			Worker savedWorker = workerService.saveWorker(name, role, specification, profilePic, email, contactNumber,
 					eContactNumber, workExperience, language, dateOfBirth, gender, houseNumber, town, pincode,
 					nearbyLandmark, district, state, aadharNumber, drivingLicenseNumber, joiningDate);
-			logger.info("Worker added successfully: {}", savedWorker.getId()); // Log the ID after successful save
+			logger.info("Worker added successfully: {}", savedWorker.getId());
 			return ResponseEntity.ok(savedWorker);
 		} catch (IOException e) {
-			logger.error("Error adding worker: {}", e.getMessage(), e); // Log the exception with details
+			logger.error("Error adding worker: {}", e.getMessage(), e);
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@GetMapping("/view")
-    public ResponseEntity<List<Worker>> getWorkers() {
-        logger.info("Viewing all workers");
-        List<Worker> workers = workerService.getAllWorkers();
-        if (workers.isEmpty()) {
-            logger.info("No active workers found");
-            return ResponseEntity.noContent().build();
-        } else {
-            logger.info("Found {} active workers", workers.size());
-            return ResponseEntity.ok(workers);
-        }
-    }
+	public ResponseEntity<List<Worker>> getWorkers() {
+	    logger.info("Viewing all workers");
+	    List<Worker> workers = workerService.getAllWorkers();
+	    if (workers.isEmpty()) {
+	        logger.info("No active workers found");
+	        return ResponseEntity.ok(workers);
+	    } else {
+	        logger.info("Found {} active workers", workers.size());
+	        return ResponseEntity.ok(workers);
+	    }
+	}
 	
 	@GetMapping("/view/{id}")
     public ResponseEntity<Worker> getWorkerById(@PathVariable Long id) {
