@@ -41,6 +41,9 @@ public class Worker {
 
 	@Column(name = "total_work_assigned")
 	private Integer totalWorkAssigned = 0;
+	
+	@Column(name = "is_active")
+    private boolean isActive = true;
 
 	// Getters and Setters
 
@@ -53,10 +56,10 @@ public class Worker {
 	}
 
 	public Worker(Long id, String name, String role, String specification, String profilePicUrl, String email,
-				  String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
-				  String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-				  String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate, Double averageRating,
-				  Integer totalWorkAssigned) {
+			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate, Double averageRating,
+			Integer totalWorkAssigned,boolean isActive) {
 
 		this.id = id;
 		this.name = name;
@@ -81,6 +84,7 @@ public class Worker {
 		this.joiningDate = joiningDate;
 		this.averageRating = averageRating;
 		this.totalWorkAssigned = totalWorkAssigned;
+		this.isActive = isActive;
 	}
 
 	public void setId(Long id) {
@@ -267,4 +271,12 @@ public class Worker {
 	public void setTotalWorkAssigned(Integer totalWorkAssigned) {
 		this.totalWorkAssigned = totalWorkAssigned;
 	}
+	
+	public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 }
