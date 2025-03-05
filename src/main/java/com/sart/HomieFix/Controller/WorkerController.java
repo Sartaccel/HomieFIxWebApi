@@ -48,17 +48,17 @@ public class WorkerController {
 		}
 	}
 
-	@GetMapping("/view")
+    @GetMapping("/view")
     public ResponseEntity<List<Worker>> getWorkers() {
         logger.info("Viewing all workers");
         List<Worker> workers = workerService.getAllWorkers();
         if (workers.isEmpty()) {
             logger.info("No active workers found");
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(workers);
         } else {
             logger.info("Found {} active workers", workers.size());
             return ResponseEntity.ok(workers);
-        }
+	}
     }
 	
 	@GetMapping("/view/{id}")
