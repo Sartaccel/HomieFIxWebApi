@@ -26,7 +26,10 @@ public class Booking {
     private LocalDate bookedDate;
     private String timeSlot;
     private String productName;
-    private Double totalPrice;
+    private String productImage;
+   
+
+	private Double totalPrice;
     private String bookingStatus;
     private String notes;
     private String rescheduleReason;
@@ -38,13 +41,14 @@ public class Booking {
     }
 
     public Booking(UserProfile userProfile, AddressEntity deliveryAddress, LocalDate bookingDate, LocalDate bookedDate,
-                   String timeSlot, String productName, Double totalPrice, String bookingStatus, String cancelReason) {
+                   String timeSlot, String productName, Double totalPrice,String productImage, String bookingStatus, String cancelReason) {
         this.userProfile = userProfile;
         this.deliveryAddress = deliveryAddress;
         this.bookingDate = bookingDate;
         this.bookedDate = bookedDate;
         this.timeSlot = timeSlot;
         this.productName = productName;
+        this.productImage=productImage;
         this.totalPrice = totalPrice;
         this.bookingStatus = bookingStatus;
         this.cancelReason = cancelReason;
@@ -114,6 +118,14 @@ public class Booking {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+    
+    public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
 
     public Double getTotalPrice() {
         return totalPrice;

@@ -98,9 +98,11 @@ public class BookingService {
 
 		String productName = cartItems.stream().map(cart -> cart.getProduct().getName()).reduce((a, b) -> a + ", " + b)
 				.orElse("");
+		
+		String productImage = cartItems.get(0).getProduct().getProductImage();
 
 		Booking booking = new Booking(userProfile, deliveryAddress, LocalDate.now(), bookedDate, timeSlot, productName,
-				totalPrice, "PENDING", null);
+				totalPrice, productImage, "PENDING", null);
 
 		bookingRepository.save(booking);
 		cartRepository.deleteAll(cartItems);
