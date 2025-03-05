@@ -42,6 +42,10 @@ public class WorkerService {
 	public Worker getWorkerById(Long id) {
         return workerRepository.findById(id).filter(Worker::isActive).orElse(null); // Filter inactive workers
     }
+	
+	public boolean contactNumberExists(String contactNumber) {
+        return workerRepository.existsByContactNumber(contactNumber);
+    }
 
 	 public Worker updateWorker(Long id, String name, String role, String specification, MultipartFile profilePic,
 	            String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
