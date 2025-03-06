@@ -16,15 +16,18 @@ public class Product {
 
     private Double price;
 
+    private String productImage; // New field for image URL
+
     public Product() {
         // TODO Auto-generated constructor stub
     }
 
-    public Product(Long id, String name, Double price) {
+    public Product(Long id, String name, Double price, String productImage) {
         super();
         this.id = id;
         this.name = name;
         this.price = price;
+        this.productImage = productImage;
     }
 
     public Long getId() {
@@ -49,5 +52,13 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 }

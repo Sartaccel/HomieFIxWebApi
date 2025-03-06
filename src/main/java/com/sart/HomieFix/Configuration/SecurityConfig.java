@@ -3,6 +3,7 @@ package com.sart.HomieFix.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,9 +29,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection for stateless authentication
                 .authorizeHttpRequests(auth -> auth
-                		  .requestMatchers("/**").permitAll()
-//                        .requestMatchers("/auth/**").permitAll()
-//                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/**", "/address/**", "/products/**","/booking/**", "/profile/**", "/address/**", "/mobile/**", "/workers/**","/feedback/**" , "/cart/**").permitAll() // Allow signup and login without authentication
+                        .anyRequest().authenticated() // Protect all other endpoints
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless session (no cookies)
@@ -57,7 +57,7 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of("http://localhost:5173")); // Allow frontend origin
         config.setAllowedHeaders(List.of("*")); // Allow all headers
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow specific HTTP methods
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")); // Allow specific HTTP methods
         config.setExposedHeaders(List.of("Authorization")); // Allow frontend to access Authorization header
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

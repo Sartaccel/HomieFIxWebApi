@@ -42,22 +42,29 @@ public class MobileNumberController {
         logger.info("Received request to verify OTP for mobile number: {}", mobileNumber);
         try {
             String response = otpService.validateOtp(mobileNumber, otp);
-            logger.info("OTP verification result for {}: {}", mobileNumber, response);
-            return ResponseEntity.ok(response);
+
+            if ("OTP Verified Successfully".equals(response) || response.startsWith("Mobile number ")) {
+                logger.info("OTP verified successfully for {}", mobileNumber);
+                return ResponseEntity.ok(response);
+            } else {
+                logger.warn("Invalid OTP for {}", mobileNumber);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid OTP or mobileNumber");
+            }
         } catch (Exception e) {
             logger.error("Error verifying OTP for {}: {}", mobileNumber, e.getMessage());
-            return ResponseEntity.badRequest().body("Error verifying OTP: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error verifying OTP: " + e.getMessage());
         }
     }
+
 
     @GetMapping("/getFirstLoginDate")
     public ResponseEntity<?> getFirstLoginDate(@RequestParam String mobileNumber) {
         logger.info("Fetching first login date for mobile number: {}", mobileNumber);
         try {
-            Optional<MobileNumber> mobile = mobileNumberRepository.findByMobileNumber(mobileNumber); // Correct type
+            Optional<MobileNumber> mobile = mobileNumberRepository.findByMobileNumber(mobileNumber);
 
-            if (mobile.isPresent()) { // Simplified check
-                MobileNumber mobileNumberEntity = mobile.get(); // Get the MobileNumber entity
+            if (mobile.isPresent()) {
+                MobileNumber mobileNumberEntity = mobile.get();
                 if (mobileNumberEntity.getFirstLoginDate() != null) {
                     String firstLoginDate = mobileNumberEntity.getFirstLoginDate().toString();
                     logger.info("First login date for mobile number {}: {}", mobileNumber, firstLoginDate);
