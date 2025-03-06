@@ -75,12 +75,10 @@ public class WorkerController {
 	
 	@GetMapping("/check-contact")
     public ResponseEntity<Boolean> checkContactNumber(@RequestParam String contactNumber) {
-        logger.info("Checking contact number: {}", contactNumber);
-        boolean exists = workerService.contactNumberExists(contactNumber);
-        logger.info("Contact number exists: {}", exists);
-        return ResponseEntity.ok(exists);
+        boolean isAvailable = workerService.isContactNumberAvailable(contactNumber);
+        return ResponseEntity.ok(isAvailable);
     }
-
+	
 	@DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteWorker(@PathVariable Long id) {
         logger.info("Deleting worker with ID: {}", id);
