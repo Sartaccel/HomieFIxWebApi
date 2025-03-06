@@ -29,8 +29,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection for stateless authentication
                 .authorizeHttpRequests(auth -> auth
                 		  .requestMatchers("/**").permitAll()
-//                        .requestMatchers("/auth/**").permitAll() // Allow signup and login without authentication
-//                        .anyRequest().authenticated() // Protect all other endpoints
+//                        .requestMatchers("/auth/**").permitAll()
+//                        .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless session (no cookies)
