@@ -44,7 +44,7 @@ public class ProductService {
 
     // Get product by ID
     public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null); // returns null if product is not found
+        return productRepository.findById(id).orElse(null);
     }
 
     // Get product suggestions based on search input

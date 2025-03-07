@@ -21,9 +21,9 @@ public class WorkerService {
 	private CloudinaryService cloudinaryService;
 
 	public Worker saveWorker(String name, String role, String specification, MultipartFile profilePic, String email,
-							 String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
-							 String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-							 String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+			String contactNumber, String eContactNumber, Integer workExperience, String language, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 
 		String imageUrl = cloudinaryService.uploadFile(profilePic);
 
@@ -34,8 +34,7 @@ public class WorkerService {
 	}
 
 	public List<Worker> getAllWorkers() {
-		return workerRepository.findAll().stream()
-				.filter(Worker::isActive) // Filter out inactive workers
+		return workerRepository.findAll().stream().filter(Worker::isActive) // Filter out inactive workers
 				.collect(Collectors.toList());
 	}
 
@@ -43,14 +42,28 @@ public class WorkerService {
 		return workerRepository.findById(id).filter(Worker::isActive).orElse(null); // Filter inactive workers
 	}
 
-	public boolean contactNumberExists(String contactNumber) {
-		return workerRepository.existsByContactNumber(contactNumber);
+	public boolean isContactNumberAvailable(String contactNumber) {
+		// Fetch all workers from the database
+		List<Worker> workers = workerRepository.findAll();
+
+		// Check if the contact number exists with any active worker
+		boolean isActiveWorkerWithContactNumber = workers.stream()
+				.anyMatch(worker -> worker.getContactNumber().equals(contactNumber) && worker.isActive());
+
+		// Check if the contact number exists with any inactive worker
+		boolean isInactiveWorkerWithContactNumber = workers.stream()
+				.anyMatch(worker -> worker.getContactNumber().equals(contactNumber) && !worker.isActive());
+
+		// Allow the contact number if:
+		// 1. It doesn't exist with any active worker, or
+		// 2. It exists with an inactive worker
+		return !isActiveWorkerWithContactNumber || isInactiveWorkerWithContactNumber;
 	}
 
 	public Worker updateWorker(Long id, String name, String role, String specification, MultipartFile profilePic,
-							   String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
-							   String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
-							   String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
+			String email, String contactNumber, String eContactNumber, Integer workExperience, LocalDate dateOfBirth,
+			String gender, String houseNumber, String town, String pincode, String nearbyLandmark, String district,
+			String state, String aadharNumber, String drivingLicenseNumber, LocalDate joiningDate) throws IOException {
 		Worker existingWorker = workerRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Worker not found with id: " + id));
 
